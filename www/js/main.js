@@ -37,14 +37,6 @@ function isNearOutline(animal, outline) {
 }
 
 /* Func02: Display Alert or Message */
-function drawBackground(background, beachImg, text) {
-    var context = background.getContext();
-
-    // context.setAttr('font', '20pt Calibri');
-    // context.setAttr('textAlign', 'center');
-    // context.setAttr('fillStyle', 'white');
-    //context.fillText(text, background.getStage().getWidth() / 2, 40);
-}
 
 /* Func03: Event & Action */
 // #event: button click
@@ -61,7 +53,33 @@ function isInside(pos, rect){
   return pos.x > rect.x && pos.x < rect.x+rect.width && pos.y < rect.y+rect.heigth && pos.y > rect.y
 }
 
-// FuncMain: init Game
+// funcStage
+function initGame() {
+  var stage = new Konva.Stage({
+      container: 'con',
+      width: winWidth,
+      height: winHeight
+  });
+  initLayers();
+  //stage.add(levelLayer);
+}
+function initLayers(level) {
+  var levelLayer = new Konva.Layer();
+  var box = new Konva.Rect({
+                x: i * 30 + 210,
+                y: i * 18 + 40,
+                width: 100,
+                height: 50,
+                fill: colors[i],
+                stroke: 'black',
+                strokeWidth: 4,
+                draggable: true,
+                name: colors[i]
+            });
+  levelLayer.add(box);
+}
+
+// FuncMain: init Stage
 function initStage(images) {
     var stage = new Konva.Stage({
         container: 'gamescreen',
@@ -71,12 +89,12 @@ function initStage(images) {
 
     var gameLayer = new Konva.Layer();
 
-    var buttonGroup = new Konva.Group();
-    var backgroundGroup = new Konva.Group();
-    var animalGroup = new Konva.Group();
+    var buttonGroup = new Konva.Group(),
+        backgroundGroup = new Konva.Group(),
+        animalGroup = new Konva.Group();
 
-    var animalShapes = [];
-    var score = 0;
+    var animalShapes = [],
+        score = 0;
 
     var rect = new Konva.Rect({
       x: 50,
@@ -86,12 +104,6 @@ function initStage(images) {
       fill: 'green',
       stroke: 'black',
       strokeWidth: 4
-    });
-
-    // #action: click on button to close canvas
-    rect.on('click',function(){
-      //writeMessage('Click on Rectangle');
-      stage.clearRect(0, 0, stage.width, stage.height);
     });
 
     // #data: image positions
@@ -133,7 +145,7 @@ function initStage(images) {
         }
     };
 
-    // create draggable animals
+    // #array create draggable animals
     for(var key in animals) {
         // anonymous function to induce scope
         (function() {
@@ -153,10 +165,11 @@ function initStage(images) {
                 this.moveToTop();
                 animalGroup.draw();
             });
+
             /*
-                   * check if animal is in the right spot and
-                   * snap into place if it is
-                   */
+             * check if animal is in the right spot and
+             * snap into place if it is
+             */
             animal.on('dragend', function() {
                 var outline = outlines[privKey + '_black'];
                 if(!animal.inRightPlace && isNearOutline(animal, outline)) {
@@ -200,7 +213,7 @@ function initStage(images) {
         })();
     }
 
-    // create animal outlines
+    // #array create animal outlines
     for(var key in outlines) {
         // anonymous function to induce scope
         (function() {
@@ -241,22 +254,31 @@ function initStage(images) {
         scaleX: scaleX,
         scaleY: scaleY
       });
-      // add the shape to the layer
+
       backgroundGroup.add(yoda);
-      // add the layer to the stage
       stage.add(gameLayer);
     };
     imageObj.src = 'img/bg-game-screen.jpg';
-    // Add to Layer
 
-    //#gameLayer
+    // #buttonGroup
+    buttonGroup.add(rect);
+    // #gameLayer - Add to Layer
     gameLayer.add(backgroundGroup);
     gameLayer.add(animalGroup);
     gameLayer.add(buttonGroup);
+
+    // #stage - Add Layer to state
     stage.add(gameLayer);
+
+    // -------- #action: click on button to close  -----------
+    rect.on('click',function(){
+        gameLayer.hide();
+        gameLayer.draw();
+    });
 }
 
-// Data: Source Data
+/* ------ Load data and run Stage ------ */
+//step1: Data: Source Data
 var sources = {
     beach: 'beach.png',
     snake: 'snake.png',
@@ -273,5 +295,6 @@ var sources = {
     giraffe_black: 'snake-black.png'
 };
 
-//run program
-loadImages(sources, initStage);
+//step2: Run Function
+//loadImages(sources, initStage);
+initGame();
