@@ -1,7 +1,8 @@
-
+    /* Global Variables */
     var width = window.innerWidth;
     var height = window.innerHeight;
 
+    /* Func01: Calculate drag & drop */
     function loadImages(sources, callback) {
         var assetDir = 'pic/';
         var images = {};
@@ -20,6 +21,7 @@
             images[src].src = assetDir + sources[src];
         }
     }
+
     function isNearOutline(animal, outline) {
         var a = animal;
         var o = outline;
@@ -33,6 +35,8 @@
             return false;
         }
     }
+
+    /* Func02: Display Message */
     function drawBackground(background, beachImg, text) {
         var context = background.getContext();
         context.drawImage(beachImg, 0, 0);
@@ -42,17 +46,61 @@
         context.fillText(text, background.getStage().getWidth() / 2, 40);
     }
 
+    // event: button click
+    function getMousePos(canvas, event) {
+    	var rect = canvas.getBoundingClientRect();
+    	return {
+    		x: event.clientX - rect.left,
+    		y: event.clientY - rect.top
+    	};
+    }
+
+    // event: check inSide
+    function isInside(pos, rect){
+    	return pos.x > rect.x && pos.x < rect.x+rect.width && pos.y < rect.y+rect.heigth && pos.y > rect.y
+    }
+
+    // init Game
     function initStage(images) {
         var stage = new Konva.Stage({
-            container: 'container',
+            container: 'gamescreen',
             width: 578,
             height: 530
         });
         var background = new Konva.Layer();
         var animalLayer = new Konva.Layer();
+        var buttonLayer = new Konva.Layer();
         var animalShapes = [];
         var score = 0;
 
+        var rect = new Konva.Rect({
+          x: 50,
+          y: 50,
+          width: 100,
+          height: 50,
+          fill: 'green',
+          stroke: 'black',
+          strokeWidth: 4
+        });
+
+        var text = new Konva.Text({
+          x: 10,
+          y: 10,
+          fontFamily: 'Calibri',
+          fontSize: 24,
+          text: '',
+          fill: 'black'
+        });
+
+        /* Func09: Debug and Display information */
+        function writeMessage(message) {
+          text.setText(message);
+          background.draw();
+        }
+
+        rect.on('click',function(){
+          writeMessage('Click on Rectangle');
+        });
         // image positions
         var animals = {
             snake: {
@@ -176,8 +224,12 @@
             })();
         }
 
+        // Add to Layer
+        buttonLayer.add(rect);
+        buttonLayer.add(text);
         stage.add(background);
         stage.add(animalLayer);
+        stage.add(buttonLayer);
 
         drawBackground(background, images.beach, 'Ahoy! Put the animals on the beach!');
     }
@@ -197,4 +249,6 @@
         giraffe_glow: 'snake-glow.png',
         giraffe_black: 'snake-black.png'
     };
+
+    //run program
     loadImages(sources, initStage);
