@@ -36,17 +36,18 @@ function isNearOutline(animal, outline) {
     }
 }
 
-/* Func02: Display Message */
+/* Func02: Display Alert or Message */
 function drawBackground(background, beachImg, text) {
     var context = background.getContext();
-    //context.drawImage(beachImg, 0, 0);
+
     // context.setAttr('font', '20pt Calibri');
     // context.setAttr('textAlign', 'center');
     // context.setAttr('fillStyle', 'white');
     //context.fillText(text, background.getStage().getWidth() / 2, 40);
 }
 
-// event: button click
+/* Func03: Event & Action */
+// #event: button click
 function getMousePos(canvas, event) {
   var rect = canvas.getBoundingClientRect();
   return {
@@ -55,12 +56,12 @@ function getMousePos(canvas, event) {
   };
 }
 
-// event: check inSide
+// #event: check inSide
 function isInside(pos, rect){
   return pos.x > rect.x && pos.x < rect.x+rect.width && pos.y < rect.y+rect.heigth && pos.y > rect.y
 }
 
-// init Game
+// FuncMain: init Game
 function initStage(images) {
     var stage = new Konva.Stage({
         container: 'gamescreen',
@@ -74,9 +75,6 @@ function initStage(images) {
     var backgroundGroup = new Konva.Group();
     var animalGroup = new Konva.Group();
 
-    //var background = new Konva.Layer();
-    //var animalGroup = new Konva.Layer();
-    //var buttonLayer = new Konva.Layer();
     var animalShapes = [];
     var score = 0;
 
@@ -96,7 +94,7 @@ function initStage(images) {
       stage.clearRect(0, 0, stage.width, stage.height);
     });
 
-    // image positions
+    // #data: image positions
     var animals = {
         snake: {
             x: 10,
@@ -219,7 +217,7 @@ function initStage(images) {
         })();
     }
 
-    // 02. add background game screen
+    // #background: add background game screen
     var imageObj = new Image();
     var ratio = 400 / 700; //width divine height
     var ratio_win = winWidth / winHeight;
@@ -232,7 +230,7 @@ function initStage(images) {
       scaleX = 1.2;
       scaleY = 1;
     }
-    
+
     imageObj.onload = function() {
       var yoda = new Konva.Image({
         x: 0,
@@ -250,20 +248,15 @@ function initStage(images) {
     };
     imageObj.src = 'img/bg-game-screen.jpg';
     // Add to Layer
-    //buttonGroup.add(rect);
-    //buttonGroup.add(text);
-
-    //stage.add(background);
-
 
     //#gameLayer
     gameLayer.add(backgroundGroup);
     gameLayer.add(animalGroup);
     gameLayer.add(buttonGroup);
     stage.add(gameLayer);
-    //drawBackground(background, images.beach, 'Ahoy! Put the animals on the beach!');
 }
 
+// Data: Source Data
 var sources = {
     beach: 'beach.png',
     snake: 'snake.png',
