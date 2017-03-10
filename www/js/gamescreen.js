@@ -97,10 +97,12 @@
           text.setText(message);
           background.draw();
         }
-
+        // #action: click on button to close canvas
         rect.on('click',function(){
-          writeMessage('Click on Rectangle');
+          //writeMessage('Click on Rectangle');
+          stage.clearRect(0, 0, stage.width, stage.height);
         });
+
         // image positions
         var animals = {
             snake: {
