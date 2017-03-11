@@ -28,7 +28,7 @@ function isNearOutline(animal, outline) {
     var ax = a.getX();
     var ay = a.getY();
 
-    if(ax > o.x - 20 && ax < o.x + 20 && ay > o.y - 20 && ay < o.y + 20) {
+    if(ax > o.x - 10 && ax < o.x + 10 && ay > o.y - 10 && ay < o.y + 10) {
         return true;
     }
     else {
@@ -160,7 +160,8 @@ function initLayer(images,animals,outlines,stage,gameLayer) {
       });
 
       backgroundGroup.add(yoda);
-      stage.add(gameLayer);
+      gameLayer.add(backgroundGroup);
+      gameLayer.draw();
     };
     imageObj.src = 'img/bg-game-screen.jpg';
 
@@ -179,80 +180,3 @@ function initLayer(images,animals,outlines,stage,gameLayer) {
 
     return gameLayer;
 }
-function initStage(images) {
-  var stage = new Konva.Stage({
-      container: 'container',
-      width: winWidth,
-      height: winHeight
-  });
-  var gameLayer1 = new Konva.Layer(),
-      gameLayer2 = new Konva.Layer();
-
-  var animals = {
-      snake: {
-          x: 10,
-          y: 70
-      },
-      giraffe: {
-          x: 90,
-          y: 70
-      },
-      monkey: {
-          x: 275,
-          y: 70
-      },
-      lion: {
-          x: 400,
-          y: 70
-      }
-  };
-  var outlines = {
-      snake_black: {
-          x: 275,
-          y: 350
-      },
-      giraffe_black: {
-          x: 390,
-          y: 250
-      },
-      monkey_black: {
-          x: 300,
-          y: 420
-      },
-      lion_black: {
-          x: 100,
-          y: 390
-      }
-  };
-
-  var vehicles = { snake: { x: 10,y: 70}, giraffe: { x: 90, y: 70}, monkey: {x: 275,y: 70},lion: {x: 400,y: 70} };
-
-  gameLevel1 = initLayer(images,animals,outlines,stage,gameLayer1);
-  gameLevel2 = initLayer(images,vehicles,outlines,stage,gameLayer2);
-//  stage.add(gameLevel2);
-  gameLevel2.hide();
-  //gameLevel1.hide();
-  stage.draw();
-  //stage.add(gameLevel1);
-}
-
-/* ------ Load data and run Stage ------ */
-//step1: Data: Source Data
-var sources = {
-    beach: 'beach.png',
-    snake: 'snake.png',
-    snake_glow: 'snake-glow.png',
-    snake_black: 'snake-black.png',
-    lion: 'snake.png',
-    lion_glow: 'snake-glow.png',
-    lion_black: 'snake-black.png',
-    monkey: 'snake.png',
-    monkey_glow: 'snake-glow.png',
-    monkey_black: 'snake-black.png',
-    giraffe: 'snake.png',
-    giraffe_glow: 'snake-glow.png',
-    giraffe_black: 'snake-black.png'
-};
-
-//step2: Run Function
-loadImages(sources, initStage);
