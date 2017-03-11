@@ -5,11 +5,20 @@ function initStage(images) {
       width: winWidth,
       height: winHeight
   });
+
   var
     gameMain = new Konva.Layer();
     gameLayer1 = new Konva.Layer(),
-    gameLayer2 = new Konva.Layer();
+    gameLayer2 = new Konva.Layer(),
+    gameLayer3 = new Konva.Layer(),
+    gameLayer4 = new Konva.Layer(),
+    gameLayer5 = new Konva.Layer();
 
+  var currentlevel = localStorage.getItem("level");
+  if(currentlevel === null) {
+    localStorage.setItem("level","1");
+  }
+  // #data: elements for draging and drop
   var animals = {
       snake: {
           x: 10,
@@ -67,28 +76,35 @@ function initStage(images) {
       }
   };
 
-  var rect = new Konva.Rect({
-      x: 50,
-      y: 50,
-      width: 100,
-      height: 50,
-      fill: 'green',
-      stroke: 'black',
-      strokeWidth: 4
-  });
+  // #screen: level screen list
+  gameLevel1 = initLayer(images,animals,outlines,stage,gameLayer1,gameMain);
+  gameLevel2 = initLayer(images,vehicles,outlines2,stage,gameLayer2,gameMain);
+  gameLevel3 = initLayer(images,vehicles,outlines2,stage,gameLayer2,gameMain);
+  gameLevel4 = initLayer(images,vehicles,outlines2,stage,gameLayer2,gameMain);
+  gameLevel5 = initLayer(images,vehicles,outlines2,stage,gameLayer2,gameMain);
 
-  gameMain.add(rect);
+  // #screen: start main screen
+  if(currentlevel === null || currentlevel == 1){
+    stage.add(gameLevel1);
+    gameLevel1.hide();
+  } else if (currentlevel == 2) {
+    stage.add(gameLevel2);
+    gameLevel2.hide();
+  } else if(currentlevel == 3) {
+    stage.add(gameLevel3);
+    gameLevel3.hide();
+  } else if(currentlevel == 4){
+    stage.add(gameLevel4);
+    gameLevel4.hide();
+  } else {
+    stage.add(gameLevel5);
+    gameLevel5.hide();
+  }
+
+  gameMain = mainLayer(stage,gameMain,gameLevel1);
   stage.add(gameMain);
-  rect.on('click',function(){
-      gameMain.hide();
-      stage.draw();
-  });
-  //gameLevel1 = initLayer(images,animals,outlines,stage,gameLayer1);
-  gameLevel2 = initLayer(images,vehicles,outlines2,stage,gameLayer2);
-  stage.add(gameLevel2);
-//  gameLevel2.hide();
-  //gameLevel1.hide();
-  //stage.draw();
+  stage.draw();
+  //stage.add(gameLevel2);
   //stage.add(gameLevel1);
 }
 /* ------ Load data and run Stage ------ */

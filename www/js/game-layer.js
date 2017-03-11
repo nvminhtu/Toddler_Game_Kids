@@ -39,7 +39,7 @@ function isNearOutline(animal, outline) {
 /* Func02: Display Alert or Message */
 
 // FuncMain: init Stage
-function initLayer(images,animals,outlines,stage,gameLayer) {
+function initLayer(images,animals,outlines,stage,gameLayer,gameMain) {
 
     var buttonGroup = new Konva.Group(),
         backgroundGroup = new Konva.Group(),
@@ -176,6 +176,7 @@ function initLayer(images,animals,outlines,stage,gameLayer) {
     rect.on('click',function(){
         gameLayer.hide();
         gameLayer.draw();
+        gameMain.show();
     });
 
     return gameLayer;
