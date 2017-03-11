@@ -39,8 +39,8 @@ function isNearOutline(animal, outline) {
 /* Func02: Display Alert or Message */
 
 // FuncMain: init Stage
-function initLayer(images,animals,outlines,stage,gameLayer,gameMain) {
-
+function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
+    console.log(lv);
     var buttonGroup = new Konva.Group(),
         backgroundGroup = new Konva.Group(),
         animalGroup = new Konva.Group();

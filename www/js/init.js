@@ -77,11 +77,11 @@ function initStage(images) {
   };
 
   // #screen: level screen list
-  gameLevel1 = initLayer(images,animals,outlines,stage,gameLayer1,gameMain);
-  gameLevel2 = initLayer(images,vehicles,outlines2,stage,gameLayer2,gameMain);
-  gameLevel3 = initLayer(images,vehicles,outlines2,stage,gameLayer2,gameMain);
-  gameLevel4 = initLayer(images,vehicles,outlines2,stage,gameLayer2,gameMain);
-  gameLevel5 = initLayer(images,vehicles,outlines2,stage,gameLayer2,gameMain);
+  gameLevel1 = initLayer(lv=1,images,animals,outlines,stage,gameLayer1,gameMain);
+  gameLevel2 = initLayer(lv=2,images,vehicles,outlines2,stage,gameLayer2,gameMain);
+  gameLevel3 = initLayer(lv=3,images,vehicles,outlines2,stage,gameLayer2,gameMain);
+  gameLevel4 = initLayer(lv=4,images,vehicles,outlines2,stage,gameLayer2,gameMain);
+  gameLevel5 = initLayer(lv=5,images,vehicles,outlines2,stage,gameLayer2,gameMain);
 
   // #screen: start main screen
   if(currentlevel === null || currentlevel == 1){
