@@ -38,51 +38,10 @@ function isNearOutline(animal, outline) {
 
 /* Func02: Display Alert or Message */
 
-/* Func03: Event & Action */
-// #event: button click
-function getMousePos(canvas, event) {
-  var rect = canvas.getBoundingClientRect();
-  return {
-    x: event.clientX - rect.left,
-    y: event.clientY - rect.top
-  };
-}
-
-// #event: check inSide
-function isInside(pos, rect){
-  return pos.x > rect.x && pos.x < rect.x+rect.width && pos.y < rect.y+rect.heigth && pos.y > rect.y
-}
-
-// funcStage
-function initGame() {
-  var stage = new Konva.Stage({
-      container: 'con',
-      width: winWidth,
-      height: winHeight
-  });
-  initLayers();
-  //stage.add(levelLayer);
-}
-function initLayers(level) {
-  var levelLayer = new Konva.Layer();
-  var box = new Konva.Rect({
-                x: i * 30 + 210,
-                y: i * 18 + 40,
-                width: 100,
-                height: 50,
-                fill: colors[i],
-                stroke: 'black',
-                strokeWidth: 4,
-                draggable: true,
-                name: colors[i]
-            });
-  levelLayer.add(box);
-}
-
 // FuncMain: init Stage
 function initStage(images) {
     var stage = new Konva.Stage({
-        container: 'gamescreen',
+        container: 'container',
         width: winWidth,
         height: winHeight
     });
@@ -151,15 +110,13 @@ function initStage(images) {
         (function() {
             var privKey = key;
             var anim = animals[key];
-
+            console.log(images[key]);
             var animal = new Konva.Image({
                 image: images[key],
                 x: anim.x,
                 y: anim.y,
                 draggable: true
             });
-
-
 
             animal.on('dragstart', function() {
                 this.moveToTop();
@@ -270,7 +227,7 @@ function initStage(images) {
     // #stage - Add Layer to state
     stage.add(gameLayer);
 
-    // -------- #action: click on button to close  -----------
+    // #action: click on button to close 
     rect.on('click',function(){
         gameLayer.hide();
         gameLayer.draw();
@@ -296,5 +253,5 @@ var sources = {
 };
 
 //step2: Run Function
-//loadImages(sources, initStage);
-initGame();
+loadImages(sources, initStage);
+//initGame();

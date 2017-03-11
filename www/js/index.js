@@ -10,30 +10,15 @@ function initStage(sources) {
   });
 
   var level = 0;
-  // var sources = {
-  //     beach: 'beach.png',
-  //     snake: 'snake.png',
-  //     snake_glow: 'snake-glow.png',
-  //     snake_black: 'snake-black.png',
-  //     lion: 'snake.png',
-  //     lion_glow: 'snake-glow.png',
-  //     lion_black: 'snake-black.png',
-  //     monkey: 'snake.png',
-  //     monkey_glow: 'snake-glow.png',
-  //     monkey_black: 'snake-black.png',
-  //     giraffe: 'snake.png',
-  //     giraffe_glow: 'snake-glow.png',
-  //     giraffe_black: 'snake-black.png'
-  // };
 
+  var levelLayer = new Konva.Layer();
+  //step1: Data: Source Data
+  initLayers(sources,stage);
 
-  //loadImages(sources,initLayers);
-  var levelLayer = initLayers(level,sources,stage);
-  stage.add(levelLayer);
 }
 
 /* Load Image data */
-function loadImages(sources) {
+function loadImages(sources,callback) {
     var assetDir = 'pic/';
     var images = {};
     var loadedImages = 0;
@@ -68,7 +53,7 @@ function isNearOutline(animal, outline) {
 }
 
 
-function initLayers(level,sources,stage){
+function initLayers(images,stage){
   var levelLayer = new Konva.Layer();
 
   var buttonGroup = new Konva.Group(),
@@ -76,46 +61,7 @@ function initLayers(level,sources,stage){
       animalGroup = new Konva.Group();
 
   var animalShapes = [],
-          score = 0;
-
-  var rect = new Konva.Rect({
-    x: 50,
-    y: 50,
-    width: 100,
-    height: 50,
-    fill: 'green',
-    stroke: 'black',
-    strokeWidth: 4
-  });
-
-  // #background: add background game screen
-    var imageObj = new Image();
-    var ratio = 400 / 700; //width divine height
-    var ratio_win = winWidth / winHeight;
-    var scaleX = 1, scaleY = 1;
-
-    if(ratio_win > ratio) { //width thực tế to hơn
-      scaleX = 1;
-      scaleY = 1.2;
-    } else {
-      scaleX = 1.2;
-      scaleY = 1;
-    }
-
-    imageObj.onload = function() {
-      var yoda = new Konva.Image({
-        x: 0,
-        y: 0,
-        image: imageObj,
-        width: winWidth,
-        height: winHeight
-      });
-
-      backgroundGroup.add(yoda);
-      levelLayer.add(backgroundGroup);
-      stage.add(levelLayer);
-    };
-    imageObj.src = 'img/bg-game-screen.jpg';
+      score = 0;
 
     // #data: image positions
     var animals = {
@@ -154,114 +100,94 @@ function initLayers(level,sources,stage){
             x: 100,
             y: 390
         }
-    };
-
-    var assetDir = 'pic/';
-    var images = {};
-    var loadedImages = 0;
-    var numImages = 0;
-    for(var src in sources) {
-        numImages++;
-    }
-    for(var src in sources) {
-        images[src] = new Image();
-        images[src].onload = function() {
-            if(++loadedImages >= numImages) {
-              images[src].src = assetDir + sources[src];
-            }
-        };
-        images[src].src = assetDir + sources[src];
     }
 
-    // #array create draggable animals
-    for(var key in animals) {
-        // anonymous function to induce scope
-        (function() {
-            var privKey = key;
-            var anim = animals[key];
 
-            var animal = new Konva.Image({
-                image: images[key],
-                x: anim.x,
-                y: anim.y,
-                draggable: true
-            });
-
-            animal.on('dragstart', function() {
-                this.moveToTop();
-                animalGroup.draw();
-            });
-
-            /*
-             * check if animal is in the right spot and
-             * snap into place if it is
-             */
-            animal.on('dragend', function() {
-                var outline = outlines[privKey + '_black'];
-                if(!animal.inRightPlace && isNearOutline(animal, outline)) {
-                    animal.position({
-                        x : outline.x,
-                        y : outline.y
-                    });
-                    animalGroup.draw();
-                    animal.inRightPlace = true;
-
-                    if(++score >= 4) {
-                        var text = 'You win! Enjoy your booty!';
-                        //drawBackground(background, images.beach, text);
+        // create draggable animals
+        for(var key in animals) {
+            // anonymous function to induce scope
+            (function() {
+                var privKey = key;
+                var anim = animals[key];
+                var animal = new Konva.Image({
+                    image: images[key],
+                    x: anim.x,
+                    y: anim.y,
+                    draggable: true
+                });
+                animal.on('dragstart', function() {
+                    this.moveToTop();
+                    animalLayer.draw();
+                });
+                /*
+                       * check if animal is in the right spot and
+                       * snap into place if it is
+                       */
+                animal.on('dragend', function() {
+                    var outline = outlines[privKey + '_black'];
+                    if(!animal.inRightPlace && isNearOutline(animal, outline)) {
+                        animal.position({
+                            x : outline.x,
+                            y : outline.y
+                        });
+                        animalLayer.draw();
+                        animal.inRightPlace = true;
+                        if(++score >= 4) {
+                            var text = 'You win! Enjoy your booty!';
+                            drawBackground(background, images.beach, text);
+                        }
+                        // disable drag and drop
+                        setTimeout(function() {
+                            animal.draggable(false);
+                        }, 50);
                     }
+                });
+                // make animal glow on mouseover
+                animal.on('mouseover', function() {
+                    animal.image(images[privKey + '_glow']);
+                    animalLayer.draw();
+                    document.body.style.cursor = 'pointer';
+                });
+                // return animal on mouseout
+                animal.on('mouseout', function() {
+                    animal.image(images[privKey]);
+                    animalLayer.draw();
+                    document.body.style.cursor = 'default';
+                });
+                animal.on('dragmove', function() {
+                    document.body.style.cursor = 'pointer';
+                });
+                levelLayer.add(animal);
+                animalShapes.push(animal);
+            })();
+        }
+        // create animal outlines
+        for(var key in outlines) {
+            // anonymous function to induce scope
+            (function() {
+                var imageObj = images[key];
+                var out = outlines[key];
+                var outline = new Konva.Image({
+                    image: imageObj,
+                    x: out.x,
+                    y: out.y
+                });
+                levelLayer.add(outline);
+            })();
+        }
 
-                    // disable drag and drop
-                    setTimeout(function() {
-                        animal.draggable(false);
-                    }, 50);
-                }
-            });
-            // make animal glow on mouseover
-            animal.on('mouseover', function() {
-                animal.image(images[privKey + '_glow']);
-                animalGroup.draw();
-                document.body.style.cursor = 'pointer';
-            });
-            // return animal on mouseout
-            animal.on('mouseout', function() {
-                animal.image(images[privKey]);
-                animalGroup.draw();
-                document.body.style.cursor = 'default';
-            });
+  // -------- add to Group and Layers ----
+  // #buttonGroup
+  //buttonGroup.add(rect);
+  // #levelLayer
+  //console.log(animalGroup);
+  //levelLayer.add(backgroundGroup);
+  //levelLayer.add(animalGroup);
+  console.log(levelLayer);
+  //levelLayer.add(buttonGroup);
 
-            animal.on('dragmove', function() {
-                document.body.style.cursor = 'pointer';
-            });
-
-            animalGroup.add(animal);
-            animalShapes.push(animal);
-        })();
-    }
-
-    // #array create animal outlines
-    for(var key in outlines) {
-        // anonymous function to induce scope
-        (function() {
-            var imageObj = images[key];
-            var out = outlines[key];
-
-            var outline = new Konva.Image({
-                image: imageObj,
-                x: out.x,
-                y: out.y
-            });
-
-            animalGroup.add(outline);
-        })();
-    }
-    // #buttonGroup
-    buttonGroup.add(rect);
-
-  levelLayer.add(backgroundGroup);
-  levelLayer.add(buttonGroup);
-
-  return levelLayer;
+  //
+  //return levelLayer;
 }
 
 /* ------ Load data and run Stage ------ */
@@ -269,4 +195,20 @@ function initLayers(level,sources,stage){
 
 
 //step2: Run Function
-initStage();
+var sources = {
+    beach: 'beach.png',
+    snake: 'snake.png',
+    snake_glow: 'snake-glow.png',
+    snake_black: 'snake-black.png',
+    lion: 'snake.png',
+    lion_glow: 'snake-glow.png',
+    lion_black: 'snake-black.png',
+    monkey: 'snake.png',
+    monkey_glow: 'snake-glow.png',
+    monkey_black: 'snake-black.png',
+    giraffe: 'snake.png',
+    giraffe_glow: 'snake-glow.png',
+    giraffe_black: 'snake-black.png'
+};
+loadImages(sources,initLayers);
+initStage(sources);
