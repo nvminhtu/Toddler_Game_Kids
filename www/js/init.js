@@ -15,9 +15,7 @@ function initStage(images) {
     gameLayer5 = new Konva.Layer();
 
   var currentlevel = localStorage.getItem("level");
-  if(currentlevel === null) {
-    localStorage.setItem("level","1");
-  }
+
   // #data: elements for draging and drop
   var animals = {
       snake: {
@@ -86,22 +84,28 @@ function initStage(images) {
   // #screen: start main screen
   if(currentlevel === null || currentlevel == 1){
     stage.add(gameLevel1);
+    localStorage.setItem("level","1");
     gameLevel1.hide();
+    gameMain = mainLayer(stage,gameMain,gameLevel1);
   } else if (currentlevel == 2) {
     stage.add(gameLevel2);
     gameLevel2.hide();
+    gameMain = mainLayer(stage,gameMain,gameLevel2);
   } else if(currentlevel == 3) {
     stage.add(gameLevel3);
     gameLevel3.hide();
+      gameMain = mainLayer(stage,gameMain,gameLevel3);
   } else if(currentlevel == 4){
     stage.add(gameLevel4);
     gameLevel4.hide();
+    gameMain = mainLayer(stage,gameMain,gameLevel4);
   } else {
     stage.add(gameLevel5);
     gameLevel5.hide();
+    gameMain = mainLayer(stage,gameMain,gameLevel5);
   }
 
-  gameMain = mainLayer(stage,gameMain,gameLevel1);
+
   stage.add(gameMain);
   stage.draw();
   //stage.add(gameLevel2);

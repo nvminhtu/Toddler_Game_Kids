@@ -40,7 +40,7 @@ function isNearOutline(animal, outline) {
 
 // FuncMain: init Stage
 function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
-    console.log(lv);
+
     var buttonGroup = new Konva.Group(),
         backgroundGroup = new Konva.Group(),
         animalGroup = new Konva.Group();
@@ -177,6 +177,9 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
         gameLayer.hide();
         gameLayer.draw();
         gameMain.show();
+        var levelup = lv + 1;
+        localStorage.setItem('level', levelup);
+        console.log(levelup);
     });
 
     return gameLayer;
