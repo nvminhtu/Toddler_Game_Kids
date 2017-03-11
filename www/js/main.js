@@ -39,14 +39,7 @@ function isNearOutline(animal, outline) {
 /* Func02: Display Alert or Message */
 
 // FuncMain: init Stage
-function initStage(images) {
-    var stage = new Konva.Stage({
-        container: 'container',
-        width: winWidth,
-        height: winHeight
-    });
-
-    var gameLayer = new Konva.Layer();
+function initLayer(images,animals,outlines,stage,gameLayer) {
 
     var buttonGroup = new Konva.Group(),
         backgroundGroup = new Konva.Group(),
@@ -66,63 +59,24 @@ function initStage(images) {
     });
 
     // #data: image positions
-    var animals = {
-        snake: {
-            x: 10,
-            y: 70
-        },
-        giraffe: {
-            x: 90,
-            y: 70
-        },
-        monkey: {
-            x: 275,
-            y: 70
-        },
-        lion: {
-            x: 400,
-            y: 70
-        }
-    };
+    // image positions
 
-    var outlines = {
-        snake_black: {
-            x: 275,
-            y: 350
-        },
-        giraffe_black: {
-            x: 390,
-            y: 250
-        },
-        monkey_black: {
-            x: 300,
-            y: 420
-        },
-        lion_black: {
-            x: 100,
-            y: 390
-        }
-    };
-
-    // #array create draggable animals
+    // create draggable animals
     for(var key in animals) {
         // anonymous function to induce scope
         (function() {
             var privKey = key;
             var anim = animals[key];
-            console.log(images[key]);
             var animal = new Konva.Image({
                 image: images[key],
                 x: anim.x,
                 y: anim.y,
                 draggable: true
             });
-
             animal.on('dragstart', function() {
                 this.moveToTop();
                 animalGroup.draw();
             });
-
             /*
              * check if animal is in the right spot and
              * snap into place if it is
@@ -136,12 +90,10 @@ function initStage(images) {
                     });
                     animalGroup.draw();
                     animal.inRightPlace = true;
-
                     if(++score >= 4) {
                         var text = 'You win! Enjoy your booty!';
-                        //drawBackground(background, images.beach, text);
+                        drawBackground(background, images.beach, text);
                     }
-
                     // disable drag and drop
                     setTimeout(function() {
                         animal.draggable(false);
@@ -160,29 +112,24 @@ function initStage(images) {
                 animalGroup.draw();
                 document.body.style.cursor = 'default';
             });
-
             animal.on('dragmove', function() {
                 document.body.style.cursor = 'pointer';
             });
-
             animalGroup.add(animal);
             animalShapes.push(animal);
         })();
     }
-
-    // #array create animal outlines
+    // create animal outlines
     for(var key in outlines) {
         // anonymous function to induce scope
         (function() {
             var imageObj = images[key];
             var out = outlines[key];
-
             var outline = new Konva.Image({
                 image: imageObj,
                 x: out.x,
                 y: out.y
             });
-
             animalGroup.add(outline);
         })();
     }
@@ -224,14 +171,69 @@ function initStage(images) {
     gameLayer.add(animalGroup);
     gameLayer.add(buttonGroup);
 
-    // #stage - Add Layer to state
-    stage.add(gameLayer);
-
-    // #action: click on button to close 
+    // #action: click on button to close
     rect.on('click',function(){
         gameLayer.hide();
         gameLayer.draw();
     });
+
+    return gameLayer;
+}
+function initStage(images) {
+  var stage = new Konva.Stage({
+      container: 'container',
+      width: winWidth,
+      height: winHeight
+  });
+  var gameLayer1 = new Konva.Layer(),
+      gameLayer2 = new Konva.Layer();
+
+  var animals = {
+      snake: {
+          x: 10,
+          y: 70
+      },
+      giraffe: {
+          x: 90,
+          y: 70
+      },
+      monkey: {
+          x: 275,
+          y: 70
+      },
+      lion: {
+          x: 400,
+          y: 70
+      }
+  };
+  var outlines = {
+      snake_black: {
+          x: 275,
+          y: 350
+      },
+      giraffe_black: {
+          x: 390,
+          y: 250
+      },
+      monkey_black: {
+          x: 300,
+          y: 420
+      },
+      lion_black: {
+          x: 100,
+          y: 390
+      }
+  };
+
+  var vehicles = { snake: { x: 10,y: 70}, giraffe: { x: 90, y: 70}, monkey: {x: 275,y: 70},lion: {x: 400,y: 70} };
+
+  gameLevel1 = initLayer(images,animals,outlines,stage,gameLayer1);
+  gameLevel2 = initLayer(images,vehicles,outlines,stage,gameLayer2);
+//  stage.add(gameLevel2);
+  gameLevel2.hide();
+  //gameLevel1.hide();
+  stage.draw();
+  //stage.add(gameLevel1);
 }
 
 /* ------ Load data and run Stage ------ */
@@ -254,4 +256,3 @@ var sources = {
 
 //step2: Run Function
 loadImages(sources, initStage);
-//initGame();
