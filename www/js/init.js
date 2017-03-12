@@ -8,7 +8,7 @@ function initStage(images) {
 
   var
     gameMain = new Konva.Layer();
-    gameLevelList = new Konva.Layer();
+    gameLevelScreen = new Konva.Layer();
     gameLayer1 = new Konva.Layer(),
     gameLayer2 = new Konva.Layer(),
     gameLayer3 = new Konva.Layer(),
@@ -81,37 +81,37 @@ function initStage(images) {
   gameLevel3 = initLayer(lv=3,images,vehicles,outlines2,stage,gameLayer2,gameMain);
   gameLevel4 = initLayer(lv=4,images,vehicles,outlines2,stage,gameLayer2,gameMain);
   gameLevel5 = initLayer(lv=5,images,vehicles,outlines2,stage,gameLayer2,gameMain);
-  gameLevelScreen = levelLayer();
-  gameLevelList = initLayer(lv=6,images,vehicles,outlines2,stage,gameLayer2,gameMain);;
+  gameLevelScreen = levelLayer(stage,gameMain,gameLevelScreen,gameLevel1);
   // #screen: start main screen
   if(currentlevel === null || currentlevel == 1){
     stage.add(gameLevel1);
     localStorage.setItem("level","1");
     gameLevel1.hide();
-    gameMain = mainLayer(stage,gameMain,gameLevel1);
+    gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel1);
   } else if (currentlevel == 2) {
     stage.add(gameLevel2);
     gameLevel2.hide();
-    gameMain = mainLayer(stage,gameMain,gameLevel2);
+    gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel2);
   } else if(currentlevel == 3) {
     stage.add(gameLevel3);
     gameLevel3.hide();
-      gameMain = mainLayer(stage,gameMain,gameLevel3);
+    gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel3);
   } else if(currentlevel == 4){
     stage.add(gameLevel4);
     gameLevel4.hide();
-    gameMain = mainLayer(stage,gameMain,gameLevel4);
+    gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel4);
   } else {
     stage.add(gameLevel5);
     gameLevel5.hide();
-    gameMain = mainLayer(stage,gameMain,gameLevel5);
+    gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel5);
   }
 
 
+  //gameLevelScreen.hide();
   stage.add(gameMain);
+  stage.add(gameLevelScreen);
+  gameLevelScreen.hide();
   stage.draw();
-  //stage.add(gameLevel2);
-  //stage.add(gameLevel1);
 }
 /* ------ Load data and run Stage ------ */
 //step1: Data: Source Data

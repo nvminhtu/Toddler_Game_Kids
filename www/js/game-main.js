@@ -1,6 +1,6 @@
 
 // FuncMain: init Stage
-function mainLayer(stage,gameMain,gameLevel) {
+function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
 
     var buttonGroup = new Konva.Group(),
         backgroundGroup = new Konva.Group();
@@ -72,9 +72,9 @@ function mainLayer(stage,gameMain,gameLevel) {
 
       levelbtn.on('click', function(evt) {
         gameMain.hide();
-        gameLevel.visible = true;
-        gameLevel.show();
-        gameLevel.draw();
+        gameLevelScreen.visible = true;
+        gameLevelScreen.show();
+        gameLevelScreen.draw();
       });
 
     };
