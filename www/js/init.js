@@ -66,21 +66,13 @@ function initStage(images) {
       giraffe_black: {
           x: 390,
           y: 250
-      },
-      monkey_black: {
-          x: 300,
-          y: 420
-      },
-      lion_black: {
-          x: 100,
-          y: 390
       }
   };
 
   // #screen: level screen list
-  gameLevel1 = initLayer(lv=1,images,animals,outlines2,stage,gameLevel1,gameMain);
+  gameLevel1 = initLayer(lv=1,images,animals,outlines,stage,gameLevel1,gameMain);
   gameLevel2 = initLayer(lv=2,images,vehicles,outlines2,stage,gameLevel2,gameMain);
-  gameLevel3 = initLayer(lv=3,images,vehicles,outlines,stage,gameLevel3,gameMain);
+  gameLevel3 = initLayer(lv=3,images,animals,outlines,stage,gameLevel3,gameMain);
   gameLevel4 = initLayer(lv=4,images,vehicles,outlines2,stage,gameLevel4,gameMain);
   gameLevel5 = initLayer(lv=5,images,vehicles,outlines2,stage,gameLevel5,gameMain);
   gameLevel6 = initLayer(lv=6,images,vehicles,outlines,stage,gameLevel6,gameMain);
