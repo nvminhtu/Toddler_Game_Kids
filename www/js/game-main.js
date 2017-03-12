@@ -48,7 +48,7 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
       buttonGroup.add(playbtn);
       buttonGroup.draw();
 
-      playbtn.on('click', function(evt) {
+      playbtn.on('touchend click', function(evt) {
         gameMain.hide();
         gameLevel.visible = true;
         gameLevel.show();
@@ -70,7 +70,7 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
       buttonGroup.add(levelbtn);
       buttonGroup.draw();
 
-      levelbtn.on('click', function(evt) {
+      levelbtn.on('touchend click', function(evt) {
         gameMain.hide();
         gameLevelScreen.visible = true;
         gameLevelScreen.show();

@@ -9,11 +9,13 @@ function initStage(images) {
   var
     gameMain = new Konva.Layer();
     gameLevelScreen = new Konva.Layer();
-    gameLayer1 = new Konva.Layer(),
-    gameLayer2 = new Konva.Layer(),
-    gameLayer3 = new Konva.Layer(),
-    gameLayer4 = new Konva.Layer(),
-    gameLayer5 = new Konva.Layer();
+    gameLevel1 = new Konva.Layer(),
+    gameLevel2 = new Konva.Layer(),
+    gameLevel3 = new Konva.Layer(),
+    gameLevel4 = new Konva.Layer(),
+    gameLevel5 = new Konva.Layer();
+    gameLevel6 = new Konva.Layer();
+    gameLevel7 = new Konva.Layer();
 
   var currentlevel = localStorage.getItem("level");
 
@@ -76,36 +78,48 @@ function initStage(images) {
   };
 
   // #screen: level screen list
-  gameLevel1 = initLayer(lv=1,images,animals,outlines,stage,gameLayer1,gameMain);
-  gameLevel2 = initLayer(lv=2,images,vehicles,outlines2,stage,gameLayer2,gameMain);
-  gameLevel3 = initLayer(lv=3,images,vehicles,outlines2,stage,gameLayer2,gameMain);
-  gameLevel4 = initLayer(lv=4,images,vehicles,outlines2,stage,gameLayer2,gameMain);
-  gameLevel5 = initLayer(lv=5,images,vehicles,outlines2,stage,gameLayer2,gameMain);
-  gameLevelScreen = levelLayer(stage,gameMain,gameLevelScreen,gameLevel1);
+  gameLevel1 = initLayer(lv=1,images,animals,outlines2,stage,gameLevel1,gameMain);
+  gameLevel2 = initLayer(lv=2,images,vehicles,outlines2,stage,gameLevel2,gameMain);
+  gameLevel3 = initLayer(lv=3,images,vehicles,outlines,stage,gameLevel3,gameMain);
+  gameLevel4 = initLayer(lv=4,images,vehicles,outlines2,stage,gameLevel4,gameMain);
+  gameLevel5 = initLayer(lv=5,images,vehicles,outlines2,stage,gameLevel5,gameMain);
+  gameLevel6 = initLayer(lv=6,images,vehicles,outlines,stage,gameLevel6,gameMain);
+  gameLevel7 = initLayer(lv=7,images,vehicles,outlines2,stage,gameLevel7,gameMain);
+
+  gameLevelScreen = levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLevel3,gameLevel4,gameLevel5,gameLevel6,gameLevel7);
+
   // #screen: start main screen
+  stage.add(gameLevel1);
+  stage.add(gameLevel2);
+  stage.add(gameLevel3);
+  stage.add(gameLevel4);
+  stage.add(gameLevel5);
+  stage.add(gameLevel6);
+  stage.add(gameLevel7);
+  gameLevel1.hide();
+  gameLevel2.hide();
+  gameLevel3.hide();
+  gameLevel4.hide();
+  gameLevel5.hide();
+  gameLevel6.hide();
+  gameLevel7.hide();
+
   if(currentlevel === null || currentlevel == 1){
-    stage.add(gameLevel1);
     localStorage.setItem("level","1");
-    gameLevel1.hide();
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel1);
   } else if (currentlevel == 2) {
-    stage.add(gameLevel2);
-    gameLevel2.hide();
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel2);
   } else if(currentlevel == 3) {
-    stage.add(gameLevel3);
-    gameLevel3.hide();
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel3);
   } else if(currentlevel == 4){
-    stage.add(gameLevel4);
-    gameLevel4.hide();
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel4);
-  } else {
-    stage.add(gameLevel5);
-    gameLevel5.hide();
+  } else if(currentlevel == 5){
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel5);
+  } else if(currentlevel == 6){
+    gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel6);
+  } else {
+    gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel7);
   }
-
 
   //gameLevelScreen.hide();
   stage.add(gameMain);
