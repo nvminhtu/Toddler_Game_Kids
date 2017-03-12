@@ -58,6 +58,28 @@ function mainLayer(stage,gameMain,gameLevel) {
     };
     playObj.src = 'img/btn-play.png';
 
+    var levelObj = new Image();
+    levelObj.onload = function(){
+      var levelbtn = new Konva.Image({
+        x: 50,
+        y: 100,
+        image: levelObj,
+        width: 200,
+        height: 80
+      });
+      buttonGroup.add(levelbtn);
+      buttonGroup.draw();
+
+      levelbtn.on('click', function(evt) {
+        gameMain.hide();
+        gameLevel.visible = true;
+        gameLevel.show();
+        gameLevel.draw();
+      });
+
+    };
+    levelObj.src = 'img/btn-play.png';
+
     // #gameMain - Add to Layer
     gameMain.add(backgroundGroup);
     gameMain.add(buttonGroup);

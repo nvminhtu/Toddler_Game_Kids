@@ -8,6 +8,7 @@ function initStage(images) {
 
   var
     gameMain = new Konva.Layer();
+    gameLevelList = new Konva.Layer();
     gameLayer1 = new Konva.Layer(),
     gameLayer2 = new Konva.Layer(),
     gameLayer3 = new Konva.Layer(),
@@ -80,7 +81,8 @@ function initStage(images) {
   gameLevel3 = initLayer(lv=3,images,vehicles,outlines2,stage,gameLayer2,gameMain);
   gameLevel4 = initLayer(lv=4,images,vehicles,outlines2,stage,gameLayer2,gameMain);
   gameLevel5 = initLayer(lv=5,images,vehicles,outlines2,stage,gameLayer2,gameMain);
-
+  gameLevelScreen = levelLayer();
+  gameLevelList = initLayer(lv=6,images,vehicles,outlines2,stage,gameLayer2,gameMain);;
   // #screen: start main screen
   if(currentlevel === null || currentlevel == 1){
     stage.add(gameLevel1);
