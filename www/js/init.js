@@ -58,6 +58,7 @@ function initStage(images) {
   };
 
   var vehicles = { bird: { x: 10,y: 70}, giraffe: { x: 90, y: 70}, monkey: {x: 275,y: 70},lion: {x: 400,y: 70} };
+
   var outlines2 = {
       bird_black: {
           x: 275,
@@ -68,9 +69,11 @@ function initStage(images) {
           y: 250
       }
   };
+  var animallv1 = { elephant: { x: 10,y: 70}, bird: { x: 90, y: 70}, monkey: {x: 275,y: 70},lion: {x: 400,y: 70} };
+  var outlineslv1 = { elephant_black: { x: 10,y: 300}, bird_black: { x: 90, y: 900}, monkey_black: {x: 40,y: 70},lion_black: {x: 400,y: 70} };
 
   // #screen: level screen list
-  gameLevel1 = initLayer(lv=1,images,animals,outlines,stage,gameLevel1,gameMain);
+  gameLevel1 = initLayer(lv=1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
   gameLevel2 = initLayer(lv=2,images,vehicles,outlines2,stage,gameLevel2,gameMain);
   gameLevel3 = initLayer(lv=3,images,animals,outlines,stage,gameLevel3,gameMain);
   gameLevel4 = initLayer(lv=4,images,vehicles,outlines2,stage,gameLevel4,gameMain);
@@ -122,7 +125,6 @@ function initStage(images) {
 /* ------ Load data and run Stage ------ */
 //step1: Data: Source Data
 var sources = {
-    beach: 'beach.png',
     bird: 'bird.png',
     bird_glow: 'bird-glow.png',
     bird_black: 'bird-black.png',
@@ -137,7 +139,10 @@ var sources = {
     monkey_black: 'snake-black.png',
     giraffe: 'snake.png',
     giraffe_glow: 'snake-glow.png',
-    giraffe_black: 'snake-black.png'
+    giraffe_black: 'snake-black.png',
+    giraffe: 'elephant.png',
+    giraffe_glow: 'elephant-glow.png',
+    giraffe_black: 'elephant-black.png'
 };
 
 //step2: Run Function

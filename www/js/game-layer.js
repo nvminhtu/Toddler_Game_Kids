@@ -142,9 +142,9 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
 
     if(ratio_win > ratio) { //width thực tế to hơn
       scaleX = 1;
-      scaleY = 1.2;
+      scaleY = 1;
     } else {
-      scaleX = 1.2;
+      scaleX = 1;
       scaleY = 1;
     }
 
@@ -163,7 +163,11 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
       gameLayer.add(backgroundGroup);
       gameLayer.draw();
     };
-    imageObj.src = 'img/bg-game-screen.jpg';
+    if(lv==1) {
+      imageObj.src = 'img/bg-field.png';
+    } else {
+      imageObj.src = 'img/bg-game-screen.jpg';
+    }
 
     // #buttonGroup
     buttonGroup.add(rect);

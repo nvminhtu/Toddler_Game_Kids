@@ -195,20 +195,5 @@ function initLayers(images,stage){
 
 
 //step2: Run Function
-var sources = {
-    beach: 'beach.png',
-    snake: 'snake.png',
-    snake_glow: 'snake-glow.png',
-    snake_black: 'snake-black.png',
-    lion: 'snake.png',
-    lion_glow: 'snake-glow.png',
-    lion_black: 'snake-black.png',
-    monkey: 'snake.png',
-    monkey_glow: 'snake-glow.png',
-    monkey_black: 'snake-black.png',
-    giraffe: 'snake.png',
-    giraffe_glow: 'snake-glow.png',
-    giraffe_black: 'snake-black.png'
-};
 loadImages(sources,initLayers);
 initStage(sources);
