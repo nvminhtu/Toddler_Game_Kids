@@ -38,48 +38,26 @@ function initStage(images) {
           y: 70
       }
   };
-  var outlines = {
-      snake_black: {
-          x: 275,
-          y: 350
-      },
-      giraffe_black: {
-          x: 390,
-          y: 250
-      },
-      monkey_black: {
-          x: 300,
-          y: 420
-      },
-      lion_black: {
-          x: 100,
-          y: 390
-      }
-  };
-
   var vehicles = { bird: { x: 10,y: 70}, giraffe: { x: 90, y: 70}, monkey: {x: 275,y: 70},lion: {x: 400,y: 70} };
 
-  var outlines2 = {
-      bird_black: {
-          x: 275,
-          y: 350
-      },
-      giraffe_black: {
-          x: 390,
-          y: 250
-      }
-  };
-  var animallv1 = { elephant: { x: 10,y: 70}, bird: { x: 90, y: 70} };
-  var outlineslv1 = { elephant_black: { x: 10,y: 300}, bird_black: { x: 90, y: 900} };
+
+  //custom width of animal
+  var width_animal = winWidth / 4,
+      width_lion = winWidth / 5.5,
+      outx_lion = winWidth / 2,
+      outy_lion = winHeight / 1.5;
+
+  var animallv1 = { elephant: { x: 0,y: 0, w: width_animal, ratio: 1.1 }, lion: { x: width_animal, y:0 ,w: width_lion, ratio: 1.58}};
+  var outlineslv1 = { elephant_black: { x: 10,y: 300,w: width_animal, ratio: 1.1}, lion_black: { x: outx_lion,y: outy_lion,w: width_lion, ratio: 1.58 }};
 
   // #screen: level screen list
   gameLevel1 = initLayer(lv=1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
-  gameLevel2 = initLayer(lv=2,images,vehicles,outlines2,stage,gameLevel2,gameMain);
-  gameLevel3 = initLayer(lv=3,images,animals,outlines,stage,gameLevel3,gameMain);
-  gameLevel4 = initLayer(lv=4,images,vehicles,outlines2,stage,gameLevel4,gameMain);
-  gameLevel5 = initLayer(lv=5,images,vehicles,outlines2,stage,gameLevel5,gameMain);
-  gameLevel6 = initLayer(lv=6,images,vehicles,outlines,stage,gameLevel6,gameMain);
-  gameLevel7 = initLayer(lv=7,images,vehicles,outlines2,stage,gameLevel7,gameMain);
+  gameLevel2 = initLayer(lv=2,images,vehicles,outlineslv1,stage,gameLevel2,gameMain);
+  gameLevel3 = initLayer(lv=3,images,animals,outlineslv1,stage,gameLevel3,gameMain);
+  gameLevel4 = initLayer(lv=4,images,vehicles,outlineslv1,stage,gameLevel4,gameMain);
+  gameLevel5 = initLayer(lv=5,images,vehicles,outlineslv1,stage,gameLevel5,gameMain);
+  gameLevel6 = initLayer(lv=6,images,vehicles,outlineslv1,stage,gameLevel6,gameMain);
+  gameLevel7 = initLayer(lv=7,images,vehicles,outlineslv1,stage,gameLevel7,gameMain);
 
   gameLevelScreen = levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLevel3,gameLevel4,gameLevel5,gameLevel6,gameLevel7);
 
@@ -125,15 +103,15 @@ function initStage(images) {
 /* ------ Load data and run Stage ------ */
 //step1: Data: Source Data
 var sources = {
-    bird: 'bird.png',
-    bird_glow: 'bird-glow.png',
-    bird_black: 'bird-black.png',
+    bird: 'elephant.png',
+    bird_glow: 'elephant-glow.png',
+    bird_black: 'elephant-black.png',
     snake: 'snake.png',
     snake_glow: 'snake-glow.png',
     snake_black: 'snake-black.png',
-    lion: 'snake.png',
-    lion_glow: 'snake-glow.png',
-    lion_black: 'snake-black.png',
+    lion: 'lion.png',
+    lion_glow: 'lion-glow.png',
+    lion_black: 'lion-black.png',
     monkey: 'snake.png',
     monkey_glow: 'snake-glow.png',
     monkey_black: 'snake-black.png',

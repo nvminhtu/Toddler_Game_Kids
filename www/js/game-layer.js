@@ -28,7 +28,7 @@ function isNearOutline(animal, outline) {
     var ax = a.getX();
     var ay = a.getY();
 
-    if(ax > o.x - 10 && ax < o.x + 10 && ay > o.y - 10 && ay < o.y + 10) {
+    if(ax > o.x - 5 && ax < o.x + 5 && ay > o.y - 5 && ay < o.y + 5) {
         return true;
     }
     else {
@@ -48,16 +48,6 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
     var animalShapes = [],
         score = 0;
 
-    var rect = new Konva.Rect({
-      x: 50,
-      y: 50,
-      width: 100,
-      height: 50,
-      fill: 'green',
-      stroke: 'black',
-      strokeWidth: 4
-    });
-
     // #data: image positions
     // image positions
 
@@ -67,10 +57,13 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
         (function() {
             var privKey = key;
             var anim = animals[key];
+            var anim_height = anim.w * anim.ratio;
             var animal = new Konva.Image({
                 image: images[key],
                 x: anim.x,
                 y: anim.y,
+                width: anim.w,
+                height: anim_height,
                 draggable: true
             });
             animal.on('dragstart', function() {
@@ -88,11 +81,12 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
                         x : outline.x,
                         y : outline.y
                     });
+                    animal.image(images[privKey + '_glow']);
                     animalGroup.draw();
                     animal.inRightPlace = true;
                     if(++score >= 4) {
-                        var text = 'You win! Enjoy your booty!';
-                        drawBackground(background, images.beach, text);
+                      //  var text = 'You win! Enjoy your booty!';
+
                     }
                     // disable drag and drop
                     setTimeout(function() {
@@ -101,10 +95,10 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
                 }
             });
             // make animal glow on mouseover
-            animal.on('mouseover', function() {
-                animal.image(images[privKey + '_glow']);
-                animalGroup.draw();
-                document.body.style.cursor = 'pointer';
+            animal.on('mouseenter', function() {
+                // animal.image(images[privKey + '_glow']);
+                // animalGroup.draw();
+                // document.body.style.cursor = 'pointer';
             });
             // return animal on mouseout
             animal.on('mouseout', function() {
@@ -125,8 +119,11 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
         (function() {
             var imageObj = images[key];
             var out = outlines[key];
+            var out_height = out.w * out.ratio;
             var outline = new Konva.Image({
                 image: imageObj,
+                width: out.w,
+                height: out_height,
                 x: out.x,
                 y: out.y
             });
@@ -169,15 +166,27 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
       imageObj.src = 'img/bg-game-screen.jpg';
     }
 
+    var heightWrap = winWidth*30/100;
+    var wrapitems = new Konva.Rect({
+      x: 0,
+      y: 0,
+      width: winWidth,
+      height: heightWrap,
+      fill: '#6E4C29',
+      stroke: '#271608',
+      opacity: 1,
+      strokeWidth: 2
+    });
+
     // #buttonGroup
-    buttonGroup.add(rect);
+    buttonGroup.add(wrapitems);
     // #gameLayer - Add to Layer
     gameLayer.add(backgroundGroup);
-    gameLayer.add(animalGroup);
     gameLayer.add(buttonGroup);
+    gameLayer.add(animalGroup);
 
     // #action: click on button to close
-    rect.on('click',function(){
+    wrapitems.on('click',function(){
         gameLayer.hide();
         gameLayer.draw();
         gameMain.show();

@@ -55,7 +55,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
       buttonGroup.add(level1_btn);
       buttonGroup.draw();
 
-      level1_btn.on('click', function(evt) {
+      level1_btn.on('touchend click', function(evt) {
         gameLevelScreen.hide();
         gameLevel1.visible = true;
         gameLevel1.show();
@@ -78,7 +78,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
       buttonGroup.add(level2_btn);
       buttonGroup.draw();
 
-      level2_btn.on('click', function(evt) {
+      level2_btn.on('touchend click', function(evt) {
         gameLevelScreen.hide();
         gameLevel2.visible = true;
         gameLevel2.show();
@@ -101,7 +101,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
       buttonGroup.add(level3_btn);
       buttonGroup.draw();
 
-      level3_btn.on('click', function(evt) {
+      level3_btn.on('touchend click', function(evt) {
         gameLevelScreen.hide();
         gameLevel3.visible = true;
         gameLevel3.show();
@@ -124,7 +124,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
       buttonGroup.add(level4_btn);
       buttonGroup.draw();
 
-      level4_btn.on('click', function(evt) {
+      level4_btn.on('touchend click', function(evt) {
         gameLevelScreen.hide();
         gameLevel4.visible = true;
         gameLevel4.show();
@@ -147,7 +147,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
       buttonGroup.add(level5_btn);
       buttonGroup.draw();
 
-      level5_btn.on('click', function(evt) {
+      level5_btn.on('touchend click', function(evt) {
         gameLevelScreen.hide();
         gameLevel5.visible = true;
         gameLevel5.show();
@@ -170,7 +170,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
       buttonGroup.add(level6_btn);
       buttonGroup.draw();
 
-      level6_btn.on('click', function(evt) {
+      level6_btn.on('touchend click', function(evt) {
         gameLevelScreen.hide();
         gameLevel6.visible = true;
         gameLevel6.show();
