@@ -69,8 +69,8 @@ function initStage(images) {
           y: 250
       }
   };
-  var animallv1 = { elephant: { x: 10,y: 70}, bird: { x: 90, y: 70}, monkey: {x: 275,y: 70},lion: {x: 400,y: 70} };
-  var outlineslv1 = { elephant_black: { x: 10,y: 300}, bird_black: { x: 90, y: 900}, monkey_black: {x: 40,y: 70},lion_black: {x: 400,y: 70} };
+  var animallv1 = { elephant: { x: 10,y: 70}, bird: { x: 90, y: 70} };
+  var outlineslv1 = { elephant_black: { x: 10,y: 300}, bird_black: { x: 90, y: 900} };
 
   // #screen: level screen list
   gameLevel1 = initLayer(lv=1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
@@ -140,9 +140,9 @@ var sources = {
     giraffe: 'snake.png',
     giraffe_glow: 'snake-glow.png',
     giraffe_black: 'snake-black.png',
-    giraffe: 'elephant.png',
-    giraffe_glow: 'elephant-glow.png',
-    giraffe_black: 'elephant-black.png'
+    elephant: 'elephant.png',
+    elephant_glow: 'elephant-glow.png',
+    elephant_black: 'elephant-black.png'
 };
 
 //step2: Run Function
