@@ -41,14 +41,18 @@ function initStage(images) {
   var vehicles = { bird: { x: 10,y: 70}, giraffe: { x: 90, y: 70}, monkey: {x: 275,y: 70},lion: {x: 400,y: 70} };
 
 
-  //custom width of animal
+  //custom width of animals
   var width_animal = winWidth / 4,
       width_lion = winWidth / 5.5,
+      width_horse = winWidth/ 4,
+      inx_horse = winWidth/2;
       outx_lion = winWidth / 2,
-      outy_lion = winHeight / 1.5;
+      outy_lion = winHeight / 1.5,
+      outx_horse = winWidth / 1.5,
+      outy_horse = winHeight /2;
 
-  var animallv1 = { elephant: { x: 0,y: 0, w: width_animal, ratio: 1.1 }, lion: { x: width_animal, y:0 ,w: width_lion, ratio: 1.58}};
-  var outlineslv1 = { elephant_black: { x: 10,y: 300,w: width_animal, ratio: 1.1}, lion_black: { x: outx_lion,y: outy_lion,w: width_lion, ratio: 1.58 }};
+  var animallv1 = { elephant: { x: 0,y: 0, w: width_animal, ratio: 1.1 }, lion: { x: width_animal, y:0 ,w: width_lion, ratio: 1.58}, horse: { x: inx_horse, y:0 ,w: width_horse, ratio: 1.1}};
+  var outlineslv1 = { elephant_black: { x: 10,y: 300,w: width_animal, ratio: 1.1}, lion_black: { x: outx_lion,y: outy_lion,w: width_lion, ratio: 1.58 },horse_black: { x: outx_horse, y:outy_horse ,w: width_horse, ratio: 1.1}};
 
   // #screen: level screen list
   gameLevel1 = initLayer(lv=1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
@@ -118,6 +122,9 @@ var sources = {
     giraffe: 'snake.png',
     giraffe_glow: 'snake-glow.png',
     giraffe_black: 'snake-black.png',
+    horse: 'horse.png',
+    horse_glow: 'horse-glow.png',
+    horse_black: 'horse-black.png',
     elephant: 'elephant.png',
     elephant_glow: 'elephant-glow.png',
     elephant_black: 'elephant-black.png'
