@@ -44,18 +44,23 @@ function initStage(images) {
   //custom width of animals
   //game level 1
   var width_animal = winWidth / 4,
+      // #lion
       width_lion = winWidth / 5.5,
       outx_lion = winWidth / 2,
       outy_lion = winHeight / 1.5,
+      // #horse
       width_horse = winWidth/ 4,
-      inx_horse = winWidth/2;
+      inx_horse = winWidth/2 - (winWidth/12);
       outx_horse = winWidth / 1.5,
       outy_horse = winHeight /2,
+      // #tahu
       width_tahu = winWidth/ 4,
-      inx_tahu = winWidth/2 + (winWidth/4);
-      outx_tahu = winWidth / 1.5,
-      outy_tahu = winHeight /2;
-  var animallv1 = { elephant: { x: 0,y: 0, w: width_animal, ratio: 1.1 }, lion: { x: width_animal, y:0 ,w: width_lion, ratio: 1.58}, horse: { x: inx_horse, y:0 ,w: width_horse, ratio: 1.1},tahu: { x: inx_tahu, y:0 ,w: width_tahu, ratio: 0.59}};
+      inx_tahu = winWidth/2 + (winWidth/5);
+      iny_tahu = width_tahu / 4,
+      outx_tahu = winWidth / 9,
+      outy_tahu = winHeight - (winHeight / 4);
+
+  var animallv1 = { elephant: { x: 0,y: 0, w: width_animal, ratio: 1.1 }, lion: { x: width_animal, y:0 ,w: width_lion, ratio: 1.58}, horse: { x: inx_horse, y:0 ,w: width_horse, ratio: 1.1},tahu: { x: inx_tahu, y:iny_tahu ,w: width_tahu, ratio: 0.59}};
   var outlineslv1 = { elephant_black: { x: 10,y: 300,w: width_animal, ratio: 1.1}, lion_black: { x: outx_lion,y: outy_lion,w: width_lion, ratio: 1.58 },horse_black: { x: outx_horse, y:outy_horse ,w: width_horse, ratio: 1.1},tahu_black: { x: outx_tahu, y:outy_tahu ,w: width_tahu, ratio: 0.59}};
   // game level 2
   //
