@@ -33,7 +33,7 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
       backgroundGroup.add(yoda);
       backgroundGroup.draw();
     };
-    imageObj.src = 'img/bg-game-screen.jpg';
+    imageObj.src = 'img/bg-game-screen.png';
 
     // #button: group of buttons
     var playObj = new Image();
