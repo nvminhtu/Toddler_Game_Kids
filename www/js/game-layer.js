@@ -166,6 +166,27 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
       imageObj.src = 'img/bg-game-screen.jpg';
     }
 
+    // #button - btnUp change state
+    var btnUpObj = new Image();
+    btnUpObj.onload = function() {
+      var btnUp = new Konva.Image({
+        x: 0,
+        y: 0,
+        image: btnUpObj,
+        width: winWidth/2,
+        height: winHeight/8
+      });
+
+      backgroundGroup.add(btnUp);
+      gameLayer.add(backgroundGroup);
+      gameLayer.draw();
+    };
+    if(lv==1) {
+      imageObj.src = 'img/bg-field.png';
+    } else {
+      imageObj.src = 'img/bg-game-screen.jpg';
+    }
+
     var heightWrap = winWidth*30/100;
     var wrapitems = new Konva.Rect({
       x: 0,
@@ -186,7 +207,7 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
     gameLayer.add(animalGroup);
 
     // #action: click on button to close
-    wrapitems.on('click',function(){
+    wrapitems.on('click touchend',function(){
         gameLayer.hide();
         gameLayer.draw();
         gameMain.show();
