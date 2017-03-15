@@ -4,42 +4,12 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
         winHeight = window.innerHeight;
 
     var btnWidth = winWidth/3,
-        btnHeight = btnWidth/2,
+        btnHeight = btnWidth * 172/150, 
         pos_col3 = btnWidth*2,
         pos_row3 = btnHeight*2;
 
     var buttonGroup = new Konva.Group(),
         backgroundGroup = new Konva.Group();
-
-    // #background: add background game screen
-    var imageObj = new Image();
-    var ratio = 400 / 700; //width divine height
-    var ratio_win = winWidth / winHeight;
-    var scaleX = 1, scaleY = 1;
-
-    if(ratio_win > ratio) { //width thực tế to hơn
-      scaleX = 1;
-      scaleY = 1.2;
-    } else {
-      scaleX = 1.2;
-      scaleY = 1;
-    }
-
-    imageObj.onload = function() {
-      var yoda = new Konva.Image({
-        x: 0,
-        y: 0,
-        image: imageObj,
-        width: winWidth,
-        height: winHeight,
-        scaleX: scaleX,
-        scaleY: scaleY
-      });
-
-      backgroundGroup.add(yoda);
-      backgroundGroup.draw();
-    };
-    imageObj.src = 'img/bg-game-screen.jpg';
 
     // #button: group of buttons
     // #btn_level1

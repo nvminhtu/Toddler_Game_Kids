@@ -36,7 +36,28 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
     };
     imageObj.src = 'img/bg-start-screen.png';
 
+    // #apptitle
+    var appTitleObj = new Image(),
+        posTitlex = (winWidth/2) - (winWidth/4),
+        posTitley = (winHeight/2),
+        titleWidth = winWidth,
+        titleHeight = titleWidth * 156/358;
+    appTitleObj.onload = function(){
+      var titlebtn = new Konva.Image({
+        x: 0,
+        y: 0,
+        image: appTitleObj,
+        width: titleWidth,
+        height: titleHeight
+      });
+      buttonGroup.add(titlebtn);
+      gameMain.add(buttonGroup);
+      gameMain.draw();
+    };
+    appTitleObj.src = 'img/app-title.png';
+
     // #button: group of buttons
+   //button play
     var playObj = new Image(),
         posPlayx = (winWidth/2) - (winWidth/4),
         posPlayy = (winHeight/2),
@@ -66,9 +87,9 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
 
     var levelObj = new Image(),
         posLevelx = (winWidth/2) - (winWidth/4),
-        posLevely = (winHeight/2) + playHeight,
+        posLevely = (winHeight/2) + playHeight + (playHeight/4),
         levelWidth = winWidth/2,
-        levelHeight = levelWidth * 200/400;
+        levelHeight = levelWidth * 102/315;
     levelObj.onload = function(){
       var levelbtn = new Konva.Image({
         x: posLevelx,
@@ -89,7 +110,35 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
       });
 
     };
-    levelObj.src = 'img/btn-play.png';
+    levelObj.src = 'img/btn-levels.png';
+
+    // #button-exit
+    var exitObj = new Image(),
+        posExitx = (winWidth/2) - (winWidth/4),
+        posExity = (winHeight/2) + (playHeight*2) + (playHeight/2),
+        exitWidth = winWidth/2,
+        exitHeight = exitWidth * 102/315;
+    exitObj.onload = function(){
+      var exitbtn = new Konva.Image({
+        x: posExitx,
+        y: posExity,
+        image: exitObj,
+        width: exitWidth,
+        height: exitHeight
+      });
+      buttonGroup.add(exitbtn);
+      gameMain.add(buttonGroup);
+      gameMain.draw();
+
+      exitbtn.on('touchend click', function(evt) {
+        gameMain.hide();
+        gameLevelScreen.visible = true;
+        gameLevelScreen.show();
+        gameLevelScreen.draw();
+      });
+
+    };
+    exitObj.src = 'img/btn-exit.png';
 
     // #gameMain - Add to Layer
     gameMain.add(backgroundGroup);
