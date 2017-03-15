@@ -1,15 +1,37 @@
 // FuncMain: init Stage
 function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLevel3,gameLevel4,gameLevel5,gameLevel6,gameLevel7) {
     var winWidth = window.innerWidth,
-        winHeight = window.innerHeight;
+        winHeight = window.innerHeight,
+        titleWidth = (winWidth)- (winWidth/8),
+        titleHeight = titleWidth * (78/520),
+        titleX = (winWidth/8) / 2;
+        titley = (titleHeight/4);
+
 
     var btnWidth = winWidth/3,
-        btnHeight = btnWidth * 172/150, 
+        btnHeight = btnWidth * 117/150,
+        firstrow = btnHeight / 2 + (btnHeight/4) ,
+        rowHeight2 = btnHeight * 2,
         pos_col3 = btnWidth*2,
         pos_row3 = btnHeight*2;
 
     var buttonGroup = new Konva.Group(),
         backgroundGroup = new Konva.Group();
+
+    // #button: title level
+    var titleObj = new Image();
+    titleObj.onload = function(){
+    var titlebtn = new Konva.Image({
+        x: titleX,
+        y: titley,
+        image: titleObj,
+        width: titleWidth,
+        height: titleHeight
+      });
+      buttonGroup.add(titlebtn);
+      buttonGroup.draw();
+    };
+    titleObj.src = 'img/choose-level.png';
 
     // #button: group of buttons
     // #btn_level1
@@ -17,7 +39,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
     level1_Obj.onload = function(){
     var level1_btn = new Konva.Image({
         x: 0,
-        y: 0,
+        y: firstrow,
         image: level1_Obj,
         width: btnWidth,
         height: btnHeight
@@ -40,7 +62,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
     level2_Obj.onload = function(){
       var level2_btn = new Konva.Image({
         x: btnWidth,
-        y: 0,
+        y: firstrow,
         image: level2_Obj,
         width: btnWidth,
         height: btnHeight
@@ -63,7 +85,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
     level3_Obj.onload = function(){
       var level3_btn = new Konva.Image({
         x: pos_col3,
-        y: 0,
+        y: firstrow,
         image: level3_Obj,
         width: btnWidth,
         height: btnHeight
@@ -86,7 +108,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
     level4_Obj.onload = function(){
       var level4_btn = new Konva.Image({
         x: 0,
-        y: btnHeight,
+        y: rowHeight2,
         image: level4_Obj,
         width: btnWidth,
         height: btnHeight
@@ -109,7 +131,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
     level5_Obj.onload = function(){
       var level5_btn = new Konva.Image({
         x: btnWidth,
-        y: btnHeight,
+        y: rowHeight2,
         image: level5_Obj,
         width: btnWidth,
         height: btnHeight
@@ -132,7 +154,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
     level6_Obj.onload = function(){
       var level6_btn = new Konva.Image({
         x: pos_col3,
-        y: btnHeight,
+        y: rowHeight2,
         image: level6_Obj,
         width: btnWidth,
         height: btnHeight

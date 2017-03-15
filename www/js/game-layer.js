@@ -160,29 +160,13 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
       gameLayer.add(backgroundGroup);
       gameLayer.draw();
     };
+
     if(lv==1) {
       imageObj.src = 'img/bg-field.png';
-    } else {
-      imageObj.src = 'img/bg-game-screen.jpg';
-    }
-
-    // #button - btnUp change state
-    var btnUpObj = new Image();
-    btnUpObj.onload = function() {
-      var btnUp = new Konva.Image({
-        x: 0,
-        y: 0,
-        image: btnUpObj,
-        width: winWidth/2,
-        height: winHeight/8
-      });
-
-      backgroundGroup.add(btnUp);
-      gameLayer.add(backgroundGroup);
-      gameLayer.draw();
-    };
-    if(lv==1) {
-      imageObj.src = 'img/bg-field.png';
+    } else if(lv==2) {
+      imageObj.src = 'img/bg-sea.png';
+    } else if(lv==3) {
+      imageObj.src = 'img/bg-sea.png';
     } else {
       imageObj.src = 'img/bg-game-screen.jpg';
     }
@@ -213,7 +197,6 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
         gameMain.show();
         var levelup = lv + 1;
         localStorage.setItem('level', levelup);
-        console.log(levelup);
     });
 
     return gameLayer;
