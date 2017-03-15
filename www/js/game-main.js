@@ -31,7 +31,8 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
       });
 
       backgroundGroup.add(yoda);
-      backgroundGroup.draw();
+      gameMain.add(buttonGroup);
+      gameMain.draw();
     };
     imageObj.src = 'img/bg-start-screen.png';
 
@@ -40,7 +41,7 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
         posPlayx = (winWidth/2) - (winWidth/4),
         posPlayy = (winHeight/2),
         playWidth = winWidth/2,
-        playHeight = playWidth * 200/400;
+        playHeight = playWidth * 102/315;
     playObj.onload = function(){
       var playbtn = new Konva.Image({
         x: posPlayx,
@@ -50,7 +51,8 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
         height: playHeight
       });
       buttonGroup.add(playbtn);
-      buttonGroup.draw();
+      gameMain.add(buttonGroup);
+      gameMain.draw();
 
       playbtn.on('touchend click', function(evt) {
         gameMain.hide();
@@ -76,7 +78,8 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
         height: levelHeight
       });
       buttonGroup.add(levelbtn);
-      buttonGroup.draw();
+      gameMain.add(buttonGroup);
+      gameMain.draw();
 
       levelbtn.on('touchend click', function(evt) {
         gameMain.hide();
@@ -91,6 +94,6 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
     // #gameMain - Add to Layer
     gameMain.add(backgroundGroup);
     gameMain.add(buttonGroup);
-
+    gameMain.draw();
     return gameMain;
 }
