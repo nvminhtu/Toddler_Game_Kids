@@ -33,17 +33,21 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
       backgroundGroup.add(yoda);
       backgroundGroup.draw();
     };
-    imageObj.src = 'img/bg-game-screen.png';
+    imageObj.src = 'img/bg-start-screen.png';
 
     // #button: group of buttons
-    var playObj = new Image();
+    var playObj = new Image(),
+        posPlayx = (winWidth/2) - (winWidth/4),
+        posPlayy = (winHeight/2),
+        playWidth = winWidth/2,
+        playHeight = playWidth * 200/400;
     playObj.onload = function(){
       var playbtn = new Konva.Image({
-        x: 50,
-        y: 50,
+        x: posPlayx,
+        y: posPlayy,
         image: playObj,
-        width: 200,
-        height: 80
+        width: playWidth,
+        height: playHeight
       });
       buttonGroup.add(playbtn);
       buttonGroup.draw();
@@ -58,14 +62,18 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
     };
     playObj.src = 'img/btn-play.png';
 
-    var levelObj = new Image();
+    var levelObj = new Image(),
+        posLevelx = (winWidth/2) - (winWidth/4),
+        posLevely = (winHeight/2) + playHeight,
+        levelWidth = winWidth/2,
+        levelHeight = levelWidth * 200/400;
     levelObj.onload = function(){
       var levelbtn = new Konva.Image({
-        x: 50,
-        y: 100,
+        x: posLevelx,
+        y: posLevely,
         image: levelObj,
-        width: 200,
-        height: 80
+        width: levelWidth,
+        height: levelHeight
       });
       buttonGroup.add(levelbtn);
       buttonGroup.draw();
