@@ -166,7 +166,7 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
     } else if(lv==2) {
       imageObj.src = 'img/bg-sea.png';
     } else if(lv==3) {
-      imageObj.src = 'img/bg-sea.png';
+      imageObj.src = 'img/bg-farm.png';
     } else {
       imageObj.src = 'img/bg-game-screen.jpg';
     }
