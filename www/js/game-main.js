@@ -131,10 +131,7 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
       gameMain.draw();
 
       exitbtn.on('touchend click', function(evt) {
-        gameMain.hide();
-        gameLevelScreen.visible = true;
-        gameLevelScreen.show();
-        gameLevelScreen.draw();
+        window.close();
       });
 
     };

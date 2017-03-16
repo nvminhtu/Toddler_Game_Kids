@@ -171,6 +171,32 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
       imageObj.src = 'img/bg-game-screen.jpg';
     }
 
+    var homeObj = new Image();
+    var home_width = winWidth / 12,
+        home_height = home_width * 109/120,
+        home_y = winHeight - (home_height * 1.5);
+
+    homeObj.onload = function() {
+      var home = new Konva.Image({
+        x: 0,
+        y: home_y,
+        image: homeObj,
+        width: home_width,
+        height: home_height
+      });
+
+      buttonGroup.add(home);
+      gameLayer.add(buttonGroup);
+      gameLayer.draw();
+
+      home.on('click touchend',function(){
+          gameLayer.hide();
+          gameLayer.draw();
+          gameMain.show();
+      });
+    };
+    homeObj.src = 'img/home-button.png';
+
     var heightWrap = winWidth*30/100;
     var wrapitems = new Konva.Rect({
       x: 0,
@@ -185,6 +211,7 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
 
     // #buttonGroup
     buttonGroup.add(wrapitems);
+
     // #gameLayer - Add to Layer
     gameLayer.add(backgroundGroup);
     gameLayer.add(buttonGroup);
@@ -197,7 +224,25 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
         gameMain.show();
         var levelup = lv + 1;
         localStorage.setItem('level', levelup);
+
+        var audio = new Audio("audio/success.wav");
+        audio.play();
     });
 
+
+    var audioType;
+
+    var audio = new Audio();
+    if (audio.canPlayType("audio/mp3")) {
+        audioType = ".mp3";
+    } else {
+        audioType = ".wav";
+    }
+
     return gameLayer;
+}
+//Function to play the exact file format
+function playAudio(){
+    var audio = new Audio("files/sounds/audio" + audioType);
+    audio.play();
 }
