@@ -20,29 +20,9 @@ function initStage(images) {
   var currentlevel = localStorage.getItem("level");
 
   // #data: elements for draging and drop
-  var animals = {
-      snake: {
-          x: 10,
-          y: 70
-      },
-      giraffe: {
-          x: 90,
-          y: 70
-      },
-      monkey: {
-          x: 275,
-          y: 70
-      },
-      lion: {
-          x: 400,
-          y: 70
-      }
-  };
-  var vehicles = { bird: { x: 10,y: 70}, giraffe: { x: 90, y: 70}, monkey: {x: 275,y: 70},lion: {x: 400,y: 70} };
 
-
+  //game level 1: forest
   //custom width of animals
-  //game level 1
   var width_animal = winWidth / 4,
       // #lion
       width_lion = winWidth / 5.5,
@@ -62,16 +42,44 @@ function initStage(images) {
 
   var animallv1 = { elephant: { x: 0,y: 0, w: width_animal, ratio: 1.1 }, lion: { x: width_animal, y:0 ,w: width_lion, ratio: 1.58}, horse: { x: inx_horse, y:0 ,w: width_horse, ratio: 1.1},tahu: { x: inx_tahu, y:iny_tahu ,w: width_tahu, ratio: 0.59}};
   var outlineslv1 = { elephant_black: { x: 10,y: 300,w: width_animal, ratio: 1.1}, lion_black: { x: outx_lion,y: outy_lion,w: width_lion, ratio: 1.58 },horse_black: { x: outx_horse, y:outy_horse ,w: width_horse, ratio: 1.1},tahu_black: { x: outx_tahu, y:outy_tahu ,w: width_tahu, ratio: 0.59}};
-  // game level 2
+
+  //game level 2: sea
+  var width_animal = winWidth / 4,
+      // #lion
+      width_fish = winWidth / 5.5,
+      outx_fish = winWidth / 2,
+      outy_fish = winHeight / 2,
+      // #craft
+      width_craft = winWidth/ 4,
+      inx_craft = winWidth/2 - (winWidth/12);
+      outx_craft = winWidth / 1.5,
+      outy_craft = winHeight  - (winHeight / 6),
+      // #shrimp
+      width_shrimp = winWidth/ 4,
+      inx_shrimp = winWidth/2 + (winWidth/5);
+      iny_shrimp = width_shrimp / 4,
+      outx_shrimp = winWidth / 10,
+      outy_shrimp = (winHeight / 2) - (winHeight / 4),
+      // #shrimp
+      width_sea_star = winWidth/ 4,
+      inx_sea_star = winWidth/2,
+      iny_sea_star = width_sea_star / 4,
+      outx_sea_star = winWidth / 9,
+      outy_sea_star = winHeight - (winHeight / 5);
+
+  var animallv2 = { fish: { x: 0,y: 10, w: width_animal, ratio: 0.87 }, craft: { x: width_animal, y:0 ,w: width_craft, ratio: 0.95}, shrimp: { x: inx_shrimp, y:0 ,w: width_shrimp, ratio: 1.1},sea_star: { x: inx_sea_star, y:iny_sea_star ,w: width_sea_star, ratio: 0.95}};
+  var outlineslv2 = { fish_black: { x: outx_fish,y: outy_fish,w: width_animal, ratio: 0.87}, craft_black: { x: outx_craft,y: outy_craft,w: width_craft, ratio: 0.95 },shrimp_black: { x: outx_shrimp, y: outy_shrimp ,w: width_shrimp, ratio: 1.1},sea_star_black: { x: outx_sea_star, y:outy_sea_star ,w: width_sea_star, ratio: 0.95}};
+
+  // game level list
   var lv1 = 1, lv2 = 2, lv3 = 3, lv4 = 4, lv5 = 5, lv6 = 6, lv7 = 7;
   // #screen: level screen list
-  gameLevel1 = initLayer(lv1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
-  gameLevel2 = initLayer(lv2,images,vehicles,outlineslv1,stage,gameLevel2,gameMain);
-  gameLevel3 = initLayer(lv3,images,animals,outlineslv1,stage,gameLevel3,gameMain);
-  gameLevel4 = initLayer(lv4,images,vehicles,outlineslv1,stage,gameLevel4,gameMain);
-  gameLevel5 = initLayer(lv5,images,vehicles,outlineslv1,stage,gameLevel5,gameMain);
-  gameLevel6 = initLayer(lv6,images,vehicles,outlineslv1,stage,gameLevel6,gameMain);
-  gameLevel7 = initLayer(lv7,images,vehicles,outlineslv1,stage,gameLevel7,gameMain);
+  gameLevel1 = initLayer(lv = 1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
+  gameLevel2 = initLayer(lv = 2,images,animallv2,outlineslv2,stage,gameLevel2,gameMain);
+  gameLevel3 = initLayer(lv = 3,images,animallv1,outlineslv1,stage,gameLevel3,gameMain);
+  gameLevel4 = initLayer(lv = 4,images,animallv1,outlineslv1,stage,gameLevel4,gameMain);
+  gameLevel5 = initLayer(lv = 5,images,animallv1,outlineslv1,stage,gameLevel5,gameMain);
+  gameLevel6 = initLayer(lv = 6,images,animallv1,outlineslv1,stage,gameLevel6,gameMain);
+  gameLevel7 = initLayer(lv = 7,images,animallv1,outlineslv1,stage,gameLevel7,gameMain);
 
   stage.add(gameLevel1);
   stage.add(gameLevel2);
@@ -92,43 +100,21 @@ function initStage(images) {
   gameLevelScreen = levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLevel3,gameLevel4,gameLevel5,gameLevel6,gameLevel7);
 
   // #screen: start main screen
-
   if(currentlevel === null || currentlevel == 1){
     localStorage.setItem("level","1");
-    //gameLevel1 = initLayer(lv=1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel1);
-    //gameLevel1.hide();
-    //stage.add(gameLevel1);
   } else if (currentlevel == 2) {
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel2);
-    //gameLevel2 = initLayer(lv=2,images,vehicles,outlineslv1,stage,gameLevel2,gameMain);
-    //stage.add(gameLevel2);
-    //gameLevel2.hide();
   } else if(currentlevel == 3) {
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel3);
-    //gameLevel3 = initLayer(lv=3,images,animals,outlineslv1,stage,gameLevel3,gameMain);
-    //stage.add(gameLevel3);
-    //gameLevel3.hide();
   } else if(currentlevel == 4){
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel4);
-    //gameLevel4 = initLayer(lv=4,images,vehicles,outlineslv1,stage,gameLevel4,gameMain);
-    //stage.add(gameLevel4);
-    //gameLevel4.hide();
   } else if(currentlevel == 5){
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel5);
-    //gameLevel5 = initLayer(lv=5,images,vehicles,outlineslv1,stage,gameLevel5,gameMain);
-    //stage.add(gameLevel5);
-    //gameLevel5.hide();
   } else if(currentlevel == 6){
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel6);
-    //gameLevel6 = initLayer(lv=6,images,vehicles,outlineslv1,stage,gameLevel6,gameMain);
-    //stage.add(gameLevel6);
-    gameLevel6.hide();
   } else {
     gameMain = mainLayer(stage,gameMain,gameLevelScreen,gameLevel7);
-    //gameLevel7 = initLayer(lv=7,images,vehicles,outlineslv1,stage,gameLevel7,gameMain);
-    //stage.add(gameLevel7);
-    //gameLevel7.hide();
   }
 
   //gameLevelScreen.hide();
@@ -140,30 +126,30 @@ function initStage(images) {
 /* ------ Load data and run Stage ------ */
 //step1: Data: Source Data
 var sources = {
-    bird: 'elephant.png',
-    bird_glow: 'elephant-glow.png',
-    bird_black: 'elephant-black.png',
-    snake: 'snake.png',
-    snake_glow: 'snake-glow.png',
-    snake_black: 'snake-black.png',
-    lion: 'lion.png',
-    lion_glow: 'lion-glow.png',
-    lion_black: 'lion-black.png',
-    monkey: 'snake.png',
-    monkey_glow: 'snake-glow.png',
-    monkey_black: 'snake-black.png',
-    giraffe: 'snake.png',
-    giraffe_glow: 'snake-glow.png',
-    giraffe_black: 'snake-black.png',
-    horse: 'horse.png',
-    horse_glow: 'horse-glow.png',
-    horse_black: 'horse-black.png',
-    elephant: 'elephant.png',
-    elephant_glow: 'elephant-glow.png',
-    elephant_black: 'elephant-black.png',
-    tahu: 'tahu.png',
-    tahu_glow: 'tahu-glow.png',
-    tahu_black: 'tahu-black.png'
+    lion: 'forest/lion.png',
+    lion_glow: 'forest/lion-glow.png',
+    lion_black: 'forest/lion-black.png',
+    horse: 'forest/horse.png',
+    horse_glow: 'forest/horse-glow.png',
+    horse_black: 'forest/horse-black.png',
+    elephant: 'forest/elephant.png',
+    elephant_glow: 'forest/elephant-glow.png',
+    elephant_black: 'forest/elephant-black.png',
+    tahu: 'forest/tahu.png',
+    tahu_glow: 'forest/tahu-glow.png',
+    tahu_black: 'forest/tahu-black.png',
+    fish: 'sea/fish.png',
+    fish_glow: 'sea/fish-glow.png',
+    fish_black: 'sea/fish-black.png',
+    craft: 'sea/craft.png',
+    craft_glow: 'sea/craft-glow.png',
+    craft_black: 'sea/craft-black.png',
+    shrimp: 'sea/shrimp.png',
+    shrimp_glow: 'sea/shrimp-glow.png',
+    shrimp_black: 'sea/shrimp-black.png',
+    sea_star: 'sea/sea-star.png',
+    sea_star_glow: 'sea/sea-star-glow.png',
+    sea_star_black: 'sea/sea-star-black.png'
 };
 
 //step2: Run Function
