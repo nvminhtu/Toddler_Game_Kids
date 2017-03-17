@@ -70,16 +70,43 @@ function initStage(images) {
   var animallv2 = { fish: { x: 0,y: 10, w: width_animal, ratio: 0.87 }, craft: { x: width_animal, y:0 ,w: width_craft, ratio: 0.95}, shrimp: { x: inx_shrimp, y:0 ,w: width_shrimp, ratio: 1.1},sea_star: { x: inx_sea_star, y:iny_sea_star ,w: width_sea_star, ratio: 0.95}};
   var outlineslv2 = { fish_black: { x: outx_fish,y: outy_fish,w: width_animal, ratio: 0.87}, craft_black: { x: outx_craft,y: outy_craft,w: width_craft, ratio: 0.95 },shrimp_black: { x: outx_shrimp, y: outy_shrimp ,w: width_shrimp, ratio: 1.1},sea_star_black: { x: outx_sea_star, y:outy_sea_star ,w: width_sea_star, ratio: 0.95}};
 
+  //game level 3: sea
+  var width_animal = winWidth / 4,
+      // #cow
+      width_cow = winWidth / 5.5,
+      outx_cow = winWidth / 2,
+      outy_cow = winHeight / 2,
+      // #horse
+      width_horse_farm = winWidth/ 4,
+      inx_horse_farm = winWidth/2 - (winWidth/12);
+      outx_horse_farm = winWidth / 1.5,
+      outy_horse_farm = winHeight  - (winHeight / 6),
+      // #pig
+      width_pig = winWidth/ 4,
+      inx_pig = winWidth/2 + (winWidth/5);
+      iny_pig = width_pig / 4,
+      outx_pig = winWidth / 10,
+      outy_pig = (winHeight / 2) - (winHeight / 4),
+      // #shrimp
+      width_roaster = winWidth/ 4,
+      inx_roaster = winWidth/2,
+      iny_roaster = width_roaster / 4,
+      outx_roaster = winWidth / 9,
+      outy_roaster = winHeight - (winHeight / 5);
+
+  var animallv3 = { cow: { x: 0,y: 10, w: width_animal, ratio: 0.57 }, horse_farm: { x: width_animal, y:0 ,w: width_horse_farm, ratio: 0.95}, pig: { x: inx_pig, y:0 ,w: width_pig, ratio: 1.1},roaster: { x: inx_roaster, y:iny_roaster ,w: width_roaster, ratio: 0.95}};
+  var outlineslv3 = { cow_black: { x: outx_fish,y: outy_fish,w: width_animal, ratio: 0.57}, horse_farm_black: { x: outx_horse_farm,y: outy_horse_farm,w: width_craft, ratio: 0.95 },pig_black: { x: outx_pig, y: outy_pig ,w: width_shrimp, ratio: 1.1},roaster_black: { x: outx_roaster, y:outy_roaster ,w: width_roaster, ratio: 0.95}};
+
   // game level list
   var lv1 = 1, lv2 = 2, lv3 = 3, lv4 = 4, lv5 = 5, lv6 = 6, lv7 = 7;
-  // #screen: level screen list
-  gameLevel1 = initLayer(lv = 1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
-  gameLevel2 = initLayer(lv = 2,images,animallv2,outlineslv2,stage,gameLevel2,gameMain);
-  gameLevel3 = initLayer(lv = 3,images,animallv1,outlineslv1,stage,gameLevel3,gameMain);
-  gameLevel4 = initLayer(lv = 4,images,animallv1,outlineslv1,stage,gameLevel4,gameMain);
-  gameLevel5 = initLayer(lv = 5,images,animallv1,outlineslv1,stage,gameLevel5,gameMain);
-  gameLevel6 = initLayer(lv = 6,images,animallv1,outlineslv1,stage,gameLevel6,gameMain);
-  gameLevel7 = initLayer(lv = 7,images,animallv1,outlineslv1,stage,gameLevel7,gameMain);
+    // #screen: level screen list
+    gameLevel1 = initLayer(lv = 1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
+    gameLevel2 = initLayer(lv = 2,images,animallv2,outlineslv2,stage,gameLevel2,gameMain);
+    gameLevel3 = initLayer(lv = 3,images,animallv3,outlineslv3,stage,gameLevel3,gameMain);
+    gameLevel4 = initLayer(lv = 4,images,animallv1,outlineslv1,stage,gameLevel4,gameMain);
+    gameLevel5 = initLayer(lv = 5,images,animallv1,outlineslv1,stage,gameLevel5,gameMain);
+    gameLevel6 = initLayer(lv = 6,images,animallv1,outlineslv1,stage,gameLevel6,gameMain);
+    gameLevel7 = initLayer(lv = 7,images,animallv1,outlineslv1,stage,gameLevel7,gameMain);
 
   stage.add(gameLevel1);
   stage.add(gameLevel2);
@@ -149,7 +176,19 @@ var sources = {
     shrimp_black: 'sea/shrimp-black.png',
     sea_star: 'sea/sea-star.png',
     sea_star_glow: 'sea/sea-star-glow.png',
-    sea_star_black: 'sea/sea-star-black.png'
+    sea_star_black: 'sea/sea-star-black.png',
+    cow: 'farm/cow.png',
+    cow_glow: 'farm/cow-glow.png',
+    cow_black: 'farm/cow-black.png',
+    horse_farm: 'farm/horse.png',
+    horse_farm_glow: 'farm/horse-glow.png',
+    horse_farm_black: 'farm/horse-black.png',
+    pig: 'farm/pig.png',
+    pig_glow: 'farm/pig-glow.png',
+    pig_black: 'farm/pig-black.png',
+    roaster: 'farm/roaster.png',
+    roaster_glow: 'farm/roaster-glow.png',
+    roaster_black: 'farm/roaster-black.png'
 };
 
 //step2: Run Function
