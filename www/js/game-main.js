@@ -131,7 +131,13 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
       gameMain.draw();
 
       exitbtn.on('touchend click', function(evt) {
-        window.close();
+        if (navigator.app) {
+            navigator.app.exitApp();
+        } else if (navigator.device) {
+            navigator.device.exitApp();
+        } else {
+            window.close();
+        }
       });
 
     };
