@@ -70,7 +70,7 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
                 this.moveToTop();
                 animalGroup.draw();
                 //sound
-                var dragelement = new Audio("audio/drop-element.wav");
+                var dragelement = new Audio("audio/drag-start.wav");
                 dragelement.play();
             });
             /*
