@@ -69,6 +69,9 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
             animal.on('dragstart', function() {
                 this.moveToTop();
                 animalGroup.draw();
+                //sound
+                var dragelement = new Audio("audio/drop-element.wav");
+                dragelement.play();
             });
             /*
              * check if animal is in the right spot and
@@ -83,6 +86,11 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
                     });
                     animal.image(images[privKey + '_glow']);
                     animalGroup.draw();
+
+                    // sound when done
+                    var dropdone = new Audio("audio/drop-success.wav");
+                    dropdone.play();
+
                     animal.inRightPlace = true;
                     if(++score >= 4) {
                       //  var text = 'You win! Enjoy your booty!';
@@ -225,7 +233,7 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
         var levelup = lv + 1;
         localStorage.setItem('level', levelup);
 
-        var audio = new Audio("audio/success.wav");
+        var audio = new Audio("audio/click.wav");
         audio.play();
     });
 
@@ -240,9 +248,4 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
     }
 
     return gameLayer;
-}
-//Function to play the exact file format
-function playAudio(){
-    var audio = new Audio("files/sounds/audio" + audioType);
-    audio.play();
 }

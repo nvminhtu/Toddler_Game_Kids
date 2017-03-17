@@ -154,3 +154,8 @@ var sources = {
 
 //step2: Run Function
 loadImages(sources, initStage);
+
+// Load sounds
+var bgsound = new Audio("audio/bg-sound.wav");
+bgsound.loop = true;
+//bgsound.play();
