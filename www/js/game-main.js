@@ -80,6 +80,9 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
         gameLevel.visible = true;
         gameLevel.show();
         gameLevel.draw();
+        soundClick();
+        stage.add(gameLevel);
+        //stage.draw();
       });
 
     };
@@ -107,6 +110,7 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
         gameLevelScreen.visible = true;
         gameLevelScreen.show();
         gameLevelScreen.draw();
+        soundClick();
       });
 
     };

@@ -52,6 +52,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
         gameLevel1.visible = true;
         gameLevel1.show();
         gameLevel1.draw();
+        soundClick();
       });
 
     };
@@ -75,6 +76,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
         gameLevel2.visible = true;
         gameLevel2.show();
         gameLevel2.draw();
+        soundClick();
       });
 
     };
@@ -98,6 +100,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
         gameLevel3.visible = true;
         gameLevel3.show();
         gameLevel3.draw();
+        soundClick();
       });
 
     };
@@ -121,6 +124,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
         gameLevel4.visible = true;
         gameLevel4.show();
         gameLevel4.draw();
+        soundClick();
       });
 
     };
@@ -144,6 +148,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
         gameLevel5.visible = true;
         gameLevel5.show();
         gameLevel5.draw();
+        soundClick();
       });
 
     };
@@ -167,6 +172,7 @@ function levelLayer(stage,gameMain,gameLevelScreen,gameLevel1,gameLevel2,gameLev
         gameLevel6.visible = true;
         gameLevel6.show();
         gameLevel6.draw();
+        soundClick();
       });
 
     };

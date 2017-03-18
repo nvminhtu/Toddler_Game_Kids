@@ -113,7 +113,15 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
-
+#splash-pic {
+  display: block;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background: url('../img/bg-farm.png');
+  background-size: cover;
+}
 #container {
   background: #3EBFB4;
+  display: none;
 }

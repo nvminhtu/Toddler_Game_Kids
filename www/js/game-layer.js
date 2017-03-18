@@ -45,6 +45,7 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
         backgroundGroup = new Konva.Group(),
         animalGroup = new Konva.Group();
 
+    var finishLevel = true;
     var animalShapes = [],
         score = 0;
 
@@ -201,6 +202,7 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
           gameLayer.hide();
           gameLayer.draw();
           gameMain.show();
+          window.location.reload(true);
       });
     };
     homeObj.src = 'img/home-button.png';

@@ -100,13 +100,13 @@ function initStage(images) {
   // game level list
   var lv1 = 1, lv2 = 2, lv3 = 3, lv4 = 4, lv5 = 5, lv6 = 6, lv7 = 7;
     // #screen: level screen list
-    gameLevel1 = initLayer(lv = 1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
-    gameLevel2 = initLayer(lv = 2,images,animallv2,outlineslv2,stage,gameLevel2,gameMain);
-    gameLevel3 = initLayer(lv = 3,images,animallv3,outlineslv3,stage,gameLevel3,gameMain);
-    gameLevel4 = initLayer(lv = 4,images,animallv1,outlineslv1,stage,gameLevel4,gameMain);
-    gameLevel5 = initLayer(lv = 5,images,animallv1,outlineslv1,stage,gameLevel5,gameMain);
-    gameLevel6 = initLayer(lv = 6,images,animallv1,outlineslv1,stage,gameLevel6,gameMain);
-    gameLevel7 = initLayer(lv = 7,images,animallv1,outlineslv1,stage,gameLevel7,gameMain);
+  gameLevel1 = initLayer(lv = 1,images,animallv1,outlineslv1,stage,gameLevel1,gameMain);
+  gameLevel2 = initLayer(lv = 2,images,animallv2,outlineslv2,stage,gameLevel2,gameMain);
+  gameLevel3 = initLayer(lv = 3,images,animallv3,outlineslv3,stage,gameLevel3,gameMain);
+  gameLevel4 = initLayer(lv = 4,images,animallv1,outlineslv1,stage,gameLevel4,gameMain);
+  gameLevel5 = initLayer(lv = 5,images,animallv1,outlineslv1,stage,gameLevel5,gameMain);
+  gameLevel6 = initLayer(lv = 6,images,animallv1,outlineslv1,stage,gameLevel6,gameMain);
+  gameLevel7 = initLayer(lv = 7,images,animallv1,outlineslv1,stage,gameLevel7,gameMain);
 
   stage.add(gameLevel1);
   stage.add(gameLevel2);
