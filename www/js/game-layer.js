@@ -42,6 +42,7 @@ function isNearOutline(animal, outline) {
 function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
 
     var buttonGroup = new Konva.Group(),
+        finishGroup = new Konva.Group(),
         backgroundGroup = new Konva.Group(),
         animalGroup = new Konva.Group();
 
@@ -49,6 +50,19 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
     var animalShapes = [],
         score = 0;
 
+    var btnFinish = new Konva.Rect({
+      x: 0,
+      y: 200,
+      width: 100,
+      height: 50,
+      fill: '#6E4C29',
+      stroke: '#271608',
+      opacity: 1,
+      strokeWidth: 2
+    });
+
+    finishGroup.add(btnFinish);
+    finishGroup.hide();
     // #data: image positions
     // image positions
 
@@ -93,9 +107,10 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
                     dropdone.play();
 
                     animal.inRightPlace = true;
-                    if(++score >= 4) {
+                    if(++score >= 2) {
                       //  var text = 'You win! Enjoy your booty!';
-
+                      finishGroup.show();
+                      gameLayer.draw();
                     }
                     // disable drag and drop
                     setTimeout(function() {
@@ -219,6 +234,8 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
       strokeWidth: 2
     });
 
+
+
     // #buttonGroup
     buttonGroup.add(wrapitems);
 
@@ -226,17 +243,17 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
     gameLayer.add(backgroundGroup);
     gameLayer.add(buttonGroup);
     gameLayer.add(animalGroup);
-
+    gameLayer.add(finishGroup);
     // #action: click on button to close
     wrapitems.on('click touchend',function(){
-        gameLayer.hide();
-        gameLayer.draw();
-        gameMain.show();
-        var levelup = lv + 1;
-        localStorage.setItem('level', levelup);
-
-        var audio = new Audio("audio/click.wav");
-        audio.play();
+        // gameLayer.hide();
+        // gameLayer.draw();
+        // gameMain.show();
+        // var levelup = lv + 1;
+        // localStorage.setItem('level', levelup);
+        //
+        // var audio = new Audio("audio/click.wav");
+        // audio.play();
     });
 
 
