@@ -50,19 +50,35 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
     var animalShapes = [],
         score = 0;
 
-    var btnFinish = new Konva.Rect({
-      x: 0,
-      y: 200,
-      width: 100,
-      height: 50,
-      fill: '#6E4C29',
-      stroke: '#271608',
-      opacity: 1,
-      strokeWidth: 2
-    });
+    var finishObj = new Image();
+    var finish_width = winWidth / 2,
+        finish_height = finish_width * 102/315,
+        finish_x = (winWidth / 4),
+        finish_y = finish_height / 2;
 
-    finishGroup.add(btnFinish);
+    finishObj.onload = function() {
+      var finish = new Konva.Image({
+        x: finish_x,
+        y: finish_y,
+        image: finishObj,
+        width: finish_width,
+        height: finish_height
+      });
+
+      finishGroup.add(finish);
+      gameLayer.add(finishGroup);
+      gameLayer.draw();
+
+      finish.on('click touchend',function(){
+          gameLayer.hide();
+          gameLayer.draw();
+          gameMain.show();
+          window.location.reload(true);
+      });
+    };
+    finishObj.src = 'img/btn-levels.png';
     finishGroup.hide();
+
     // #data: image positions
     // image positions
 
@@ -111,6 +127,9 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
                       //  var text = 'You win! Enjoy your booty!';
                       finishGroup.show();
                       gameLayer.draw();
+
+                      var wonSound = new Audio("audio/bravo.wav");
+                      wonSound.play();
                     }
                     // disable drag and drop
                     setTimeout(function() {
@@ -233,8 +252,6 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
       opacity: 1,
       strokeWidth: 2
     });
-
-
 
     // #buttonGroup
     buttonGroup.add(wrapitems);
