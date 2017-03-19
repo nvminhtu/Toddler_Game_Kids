@@ -151,5 +151,9 @@ function mainLayer(stage,gameMain,gameLevelScreen,gameLevel) {
     gameMain.add(backgroundGroup);
     gameMain.add(buttonGroup);
     gameMain.draw();
+
+    var bgSound = new Audio("audio/bg-sound.wav");
+    bgSound.play();
+
     return gameMain;
 }

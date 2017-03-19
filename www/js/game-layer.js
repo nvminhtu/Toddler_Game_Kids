@@ -73,7 +73,11 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
           gameLayer.hide();
           gameLayer.draw();
           gameMain.show();
+          var levelup = lv + 1;
+          localStorage.setItem('level', levelup);
+          soundClick();
           window.location.reload(true);
+
       });
     };
     finishObj.src = 'img/btn-levels.png';
