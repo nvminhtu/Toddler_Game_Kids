@@ -73,14 +73,17 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
           gameLayer.hide();
           gameLayer.draw();
           gameMain.show();
-          var levelup = lv + 1;
+          var levelup;
+          if(lv < 3) {
+            levelup = lv + 1;
+          }
           localStorage.setItem('level', levelup);
           soundClick();
           window.location.reload(true);
 
       });
     };
-    finishObj.src = 'img/btn-levels.png';
+    finishObj.src = 'img/btn-next.png';
     finishGroup.hide();
 
     // #data: image positions
@@ -127,7 +130,7 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
                     dropdone.play();
 
                     animal.inRightPlace = true;
-                    if(++score >= 2) {
+                    if(++score >= 4) {
                       //  var text = 'You win! Enjoy your booty!';
                       finishGroup.show();
                       gameLayer.draw();
@@ -215,7 +218,7 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
     } else if(lv==3) {
       imageObj.src = 'img/bg-farm.png';
     } else {
-      imageObj.src = 'img/bg-game-screen.jpg';
+      imageObj.src = 'img/bg-field.png';
     }
 
     var homeObj = new Image();
@@ -265,18 +268,6 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
     gameLayer.add(buttonGroup);
     gameLayer.add(animalGroup);
     gameLayer.add(finishGroup);
-    // #action: click on button to close
-    wrapitems.on('click touchend',function(){
-        // gameLayer.hide();
-        // gameLayer.draw();
-        // gameMain.show();
-        // var levelup = lv + 1;
-        // localStorage.setItem('level', levelup);
-        //
-        // var audio = new Audio("audio/click.wav");
-        // audio.play();
-    });
-
 
     var audioType;
 
