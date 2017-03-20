@@ -75,12 +75,13 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
           gameMain.show();
           var levelup;
           if(lv < 3) {
-            levelup = lv + 1;
+            lv = lv + 1;
           }
+          levelup = lv;
           localStorage.setItem('level', levelup);
           soundClick();
           window.location.reload(true);
-
+          AdMob.showInterstitial();
       });
     };
     finishObj.src = 'img/btn-next.png';
@@ -224,11 +225,10 @@ function initLayer(lv,images,animals,outlines,stage,gameLayer,gameMain) {
     var homeObj = new Image();
     var home_width = winWidth / 12,
         home_height = home_width * 109/120,
-        home_y = winHeight - (home_height * 1.5);
-
+        home_y = winHeight - (winHeight/6);
     homeObj.onload = function() {
       var home = new Konva.Image({
-        x: 0,
+        x: 10,
         y: home_y,
         image: homeObj,
         width: home_width,
